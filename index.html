@@ -1,4 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>School ERP</title><link rel="icon" href="data:,">
+<link rel="preconnect" href="https://www.gstatic.com"><link rel="preconnect" href="https://firestore.googleapis.com" crossorigin><link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com"><link rel="dns-prefetch" href="https://securetoken.googleapis.com">
+<link rel="preload" as="script" href="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"><link rel="preload" as="script" href="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"><link rel="preload" as="script" href="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js">
 <style>
 :root{--bg:#f3f4f8;--cd:#fff;--tx:#111827;--mu:#6b7280;--pr:#4f46e5;--p2:#7c3aed;--bd:#e8eaf0;--ok:#059669;--er:#dc2626;--sh:0 1px 2px #1118270d,0 4px 14px #11182710;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b1020;--cd:#151b2e;--tx:#e8eaf2;--mu:#94a3b8;--bd:#263049}}
@@ -51,7 +53,7 @@ nav a i,.br i{display:grid;place-items:center}.tb small{display:block;color:var(
 .tch .adm{display:none!important}textarea{font:inherit}.idg{display:grid;grid-template-columns:repeat(2,85.6mm);gap:2mm 4mm;justify-content:center}.idg .idc{width:85.6mm;height:54mm;margin:0;border-radius:3mm}.idc .mono{width:40px;height:40px;font-size:16px}.sgn{position:absolute!important;right:12px;bottom:24px;width:78px;border-top:1px solid #374151;text-align:center;font:8px sans-serif;padding-top:2px}
 #pr{display:none}.pg{border:2px solid #222;padding:14px;margin:8px;color:#000;background:#fff;page-break-inside:avoid;font-family:Georgia,serif}.pg table{width:100%;border-collapse:collapse}.pg td,.pg th{border:1px solid #444;padding:5px}.pg h2,.pg h4{text-align:center;margin:2px}.idc{display:inline-block;width:250px;margin:6px}
 .idg2{display:grid;grid-template-columns:repeat(2,54mm);gap:4mm 3mm;justify-content:center}
-.id2{position:relative;width:54mm;height:85.6mm;overflow:hidden;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;border:.2mm solid #cbd5e1;border-radius:2.5mm;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-sizing:border-box}
+.id2{position:relative;width:53.98mm;height:85.6mm;overflow:hidden;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;border:.2mm solid #cbd5e1;border-radius:2.5mm;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-sizing:border-box}
 .id2>svg.bg{position:absolute;inset:0;width:100%;height:100%}
 .id2 .hdr{position:absolute;left:4mm;right:3mm;top:3.5mm;display:flex;align-items:center;gap:2mm;color:#fff}
 .id2 .hdr .mono{width:9mm;height:9mm;font-size:9pt;border:.4mm solid var(--ax,#f2a24d);flex:none}
@@ -246,158 +248,185 @@ main table:not(.pv) th,main table:not(.pv) td{padding:6px 8px}
 .ub .ar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.ub .ar select{flex:1 1 110px;min-width:0}.ub .ar button{flex:0 0 auto}
 .sjc{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.sjc .t{font-size:13px;padding:5px 11px}.sjc a{color:inherit;text-decoration:none;margin-left:4px;font-weight:700}
 .sjp button{margin:0 6px 6px 0}
+.rt{border-collapse:collapse;width:100%;font-size:12px}.rt th,.rt td{border:1px solid var(--bd,#cbd5e1);padding:4px 6px;text-align:left}.rt th{background:var(--bg,#f1f5f9)}.rbar{height:8px;background:var(--pr,#0f766e);border-radius:4px}
 .mdb{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(15,23,42,.55);z-index:8998}
 .mdl{position:fixed!important;left:50%;top:50%;transform:translate(-50%,-50%);width:min(720px,94vw);max-height:88vh;overflow:auto;z-index:8999;margin:0!important;box-shadow:0 12px 48px rgba(0,0,0,.45)}
 .mdl>summary{pointer-events:none;list-style:none;margin-bottom:8px}.mdl>summary::-webkit-details-marker{display:none}.mdl>summary:before,.mdl>summary:after{display:none!important}
 body:has(.mdl){overflow:hidden}
 /* ===== Print designs (chosen in Settings > Print designs & colours) ===== */
-html:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2>svg.bg{display:none}
-html:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2>*{z-index:1}
-html:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2:before,html:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2:after{content:"";position:absolute;z-index:0}
+:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2>svg.bg{display:none}
+:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2>*{z-index:1}
+:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2:before,:is([data-dzid="2"],[data-dzid="3"],[data-dzid="4"],[data-dzid="6"],[data-dzid="7"],[data-dzid="8"],[data-dzid="9"]) .id2:after{content:"";position:absolute;z-index:0}
 /* ID 2 Modern */
-html[data-dzid="2"] .id2:before{left:0;right:0;top:0;height:42mm;background:var(--ac);border-radius:0 0 50% 50%/0 0 9mm 9mm}
-html[data-dzid="2"] .id2:after{left:0;right:0;bottom:0;height:2.6mm;background:var(--ax,#f2a24d)}
-html[data-dzid="2"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
-html[data-dzid="2"] .id2:has(.ftr):before{height:34mm}
-html[data-dzid="2"] .id2:has(.ftr):after{height:14mm;border-radius:6mm 6mm 0 0;background:var(--ac);border-top:.9mm solid var(--ax,#f2a24d)}
+[data-dzid="2"] .id2:before{left:0;right:0;top:0;height:42mm;background:var(--ac);border-radius:0 0 50% 50%/0 0 9mm 9mm}
+[data-dzid="2"] .id2:after{left:0;right:0;bottom:0;height:2.6mm;background:var(--ax,#f2a24d)}
+[data-dzid="2"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
+[data-dzid="2"] .id2:has(.ftr):before{height:34mm}
+[data-dzid="2"] .id2:has(.ftr):after{height:14mm;border-radius:6mm 6mm 0 0;background:var(--ac);border-top:.9mm solid var(--ax,#f2a24d)}
 /* ID 3 Minimal */
-html[data-dzid="3"] .id2:before{left:0;top:0;bottom:0;width:3.2mm;background:var(--ac)}
-html[data-dzid="3"] .id2:after{left:3.2mm;right:0;bottom:0;height:1.6mm;background:var(--ax,#f2a24d)}
-html[data-dzid="3"] .id2 .hdr{color:var(--ac);left:7mm}
-html[data-dzid="3"] .id2 .pho{border-radius:2mm;border:0;border-bottom:1mm solid var(--ax,#f2a24d)}
-html[data-dzid="3"] .id2 .nm{left:5mm}
-html[data-dzid="3"] .id2 .tb2,html[data-dzid="3"] .id2 .ins,html[data-dzid="3"] .id2 .sgn{left:7mm}
-html[data-dzid="3"] .id2 .tb2{width:40mm}
-html[data-dzid="3"] .id2 .tb3,html[data-dzid="3"] .id2 .bar{left:7mm;right:3mm}
-html[data-dzid="3"] .id2 .ins{color:#333}html[data-dzid="3"] .id2 .ins b{color:var(--ad,#e08a1e)}
-html[data-dzid="3"] .id2 .ftr{color:var(--ac);left:7mm}
+[data-dzid="3"] .id2:before{left:0;top:0;bottom:0;width:3.2mm;background:var(--ac)}
+[data-dzid="3"] .id2:after{left:3.2mm;right:0;bottom:0;height:1.6mm;background:var(--ax,#f2a24d)}
+[data-dzid="3"] .id2 .hdr{color:var(--ac);left:7mm}
+[data-dzid="3"] .id2 .pho{border-radius:2mm;border:0;border-bottom:1mm solid var(--ax,#f2a24d)}
+[data-dzid="3"] .id2 .nm{left:5mm}
+[data-dzid="3"] .id2 .tb2,[data-dzid="3"] .id2 .ins,[data-dzid="3"] .id2 .sgn{left:7mm}
+[data-dzid="3"] .id2 .tb2{width:40mm}
+[data-dzid="3"] .id2 .tb3,[data-dzid="3"] .id2 .bar{left:7mm;right:3mm}
+[data-dzid="3"] .id2 .ins{color:#333}[data-dzid="3"] .id2 .ins b{color:var(--ad,#e08a1e)}
+[data-dzid="3"] .id2 .ftr{color:var(--ac);left:7mm}
 /* ID 4 Horizontal */
-html[data-dzid="4"] .id2{width:85.6mm;height:54mm}
-html[data-dzid="4"] .id2:before{left:0;top:0;bottom:0;width:28mm;background:var(--ac)}
-html[data-dzid="4"] .id2:after{left:28mm;right:0;bottom:0;height:1.8mm;background:var(--ax,#f2a24d)}
-html[data-dzid="4"] .idg2{grid-template-columns:repeat(2,85.6mm)}
-html[data-dzid="4"] .id2 .hdr{left:31mm;right:3mm;top:3mm;color:var(--ac)}
-html[data-dzid="4"] .id2 .pho{left:3mm;top:16mm;margin-left:0;width:22mm;height:22mm}
-html[data-dzid="4"] .id2 .nm{left:31mm;right:3mm;top:13.5mm;text-align:left}
-html[data-dzid="4"] .id2 .ss{left:31mm;right:3mm;top:18.6mm;text-align:left}
-html[data-dzid="4"] .id2 .tb2{left:31mm;width:51mm;top:22.5mm}
-html[data-dzid="4"] .id2 .tb2 td{height:3.2mm}
-html[data-dzid="4"] .id2 .qr{right:3mm;top:auto;bottom:3.5mm;width:9mm;height:9mm}
-html[data-dzid="4"] .id2 .sgn{left:31mm;top:auto;bottom:3.2mm;width:30mm;height:9mm}
-html[data-dzid="4"] .id2 .ins{left:31mm;right:3mm;top:3mm;color:#333;font-size:5pt}
-html[data-dzid="4"] .id2 .ins b{color:var(--ad,#e08a1e)}html[data-dzid="4"] .id2 .ins p{margin-bottom:1mm}
-html[data-dzid="4"] .id2 .tb3{left:31mm;right:3mm;top:19mm}
-html[data-dzid="4"] .id2 .bar{left:31mm;right:3mm;top:33mm;height:8mm}
-html[data-dzid="4"] .id2 .ftr{left:2mm;right:auto;width:24mm;top:16mm;bottom:auto;flex-direction:column;text-align:center;color:#fff}
+[data-dzid="4"] .id2{width:85.6mm;height:53.98mm}
+[data-dzid="4"] .id2:before{left:0;top:0;bottom:0;width:28mm;background:var(--ac)}
+[data-dzid="4"] .id2:after{left:28mm;right:0;bottom:0;height:1.8mm;background:var(--ax,#f2a24d)}
+[data-dzid="4"] .idg2{grid-template-columns:repeat(2,85.6mm)}
+[data-dzid="4"] .id2 .hdr{left:31mm;right:3mm;top:3mm;color:var(--ac)}
+[data-dzid="4"] .id2 .pho{left:3mm;top:16mm;margin-left:0;width:22mm;height:22mm}
+[data-dzid="4"] .id2 .nm{left:31mm;right:3mm;top:13.5mm;text-align:left}
+[data-dzid="4"] .id2 .ss{left:31mm;right:3mm;top:18.6mm;text-align:left}
+[data-dzid="4"] .id2 .tb2{left:31mm;width:51mm;top:22.5mm}
+[data-dzid="4"] .id2 .tb2 td{height:3.2mm}
+[data-dzid="4"] .id2 .qr{right:3mm;top:auto;bottom:3.5mm;width:9mm;height:9mm}
+[data-dzid="4"] .id2 .sgn{left:31mm;top:auto;bottom:3.2mm;width:30mm;height:9mm}
+[data-dzid="4"] .id2 .ins{left:31mm;right:3mm;top:3mm;color:#333;font-size:5pt}
+[data-dzid="4"] .id2 .ins b{color:var(--ad,#e08a1e)}[data-dzid="4"] .id2 .ins p{margin-bottom:1mm}
+[data-dzid="4"] .id2 .tb3{left:31mm;right:3mm;top:19mm}
+[data-dzid="4"] .id2 .bar{left:31mm;right:3mm;top:33mm;height:8mm}
+[data-dzid="4"] .id2 .ftr{left:2mm;right:auto;width:24mm;top:16mm;bottom:auto;flex-direction:column;text-align:center;color:#fff}
 /* ID 6 Bold panel */
-html[data-dzid="6"] .id2{background:var(--ac)}
-html[data-dzid="6"] .id2:before{left:2.5mm;right:2.5mm;top:41mm;bottom:2mm;background:#fff;border-radius:3mm}
-html[data-dzid="6"] .id2:after{left:4mm;right:4mm;top:13.8mm;height:.4mm;background:var(--ax,#f2a24d)}
-html[data-dzid="6"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
-html[data-dzid="6"] .id2 .qr{top:70mm}
-html[data-dzid="6"] .id2 .sgn{top:70.5mm}
-html[data-dzid="6"] .id2:has(.ftr):before{top:33mm;bottom:15mm}
-html[data-dzid="6"] .id2:has(.ftr):after{display:none}
+[data-dzid="6"] .id2{background:var(--ac)}
+[data-dzid="6"] .id2:before{left:2.5mm;right:2.5mm;top:41mm;bottom:2mm;background:#fff;border-radius:3mm}
+[data-dzid="6"] .id2:after{left:4mm;right:4mm;top:13.8mm;height:.4mm;background:var(--ax,#f2a24d)}
+[data-dzid="6"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
+[data-dzid="6"] .id2 .qr{top:70mm}
+[data-dzid="6"] .id2 .sgn{top:70.5mm}
+[data-dzid="6"] .id2:has(.ftr):before{top:33mm;bottom:15mm}
+[data-dzid="6"] .id2:has(.ftr):after{display:none}
 /* ID 7 Diagonal */
-html[data-dzid="7"] .id2:before{left:0;top:0;width:100%;height:40mm;background:var(--ax,#f2a24d);clip-path:polygon(0 0,100% 0,100% 24mm,0 40mm)}
-html[data-dzid="7"] .id2:after{left:0;top:0;width:100%;height:36mm;background:var(--ac);clip-path:polygon(0 0,100% 0,100% 20mm,0 36mm)}
-html[data-dzid="7"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
-html[data-dzid="7"] .id2:has(.ftr):before{height:33mm;clip-path:polygon(0 0,100% 0,100% 27mm,0 33mm)}
-html[data-dzid="7"] .id2:has(.ftr):after{height:30mm;clip-path:polygon(0 0,100% 0,100% 24mm,0 30mm)}
-html[data-dzid="7"] .id2 .ftr{color:var(--ac)}
+[data-dzid="7"] .id2:before{left:0;top:0;width:100%;height:40mm;background:var(--ax,#f2a24d);clip-path:polygon(0 0,100% 0,100% 24mm,0 40mm)}
+[data-dzid="7"] .id2:after{left:0;top:0;width:100%;height:36mm;background:var(--ac);clip-path:polygon(0 0,100% 0,100% 20mm,0 36mm)}
+[data-dzid="7"] .id2 .pho{border:1mm solid #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
+[data-dzid="7"] .id2:has(.ftr):before{height:33mm;clip-path:polygon(0 0,100% 0,100% 27mm,0 33mm)}
+[data-dzid="7"] .id2:has(.ftr):after{height:30mm;clip-path:polygon(0 0,100% 0,100% 24mm,0 30mm)}
+[data-dzid="7"] .id2 .ftr{color:var(--ac)}
 /* ID 8 Frame */
-html[data-dzid="8"] .id2{background:var(--t2,#f7f9fc)}
-html[data-dzid="8"] .id2:before{left:2mm;top:2mm;right:2mm;bottom:2mm;border:.6mm solid var(--ac);border-radius:3mm}
-html[data-dzid="8"] .id2:after{left:3.3mm;top:3.3mm;right:3.3mm;bottom:3.3mm;border:.2mm solid var(--ax,#f2a24d);border-radius:2mm}
-html[data-dzid="8"] .id2 .hdr{color:var(--ac);left:6mm;right:5mm;top:5.5mm}
-html[data-dzid="8"] .id2 .pho{top:17.5mm;width:27mm;height:27mm;margin-left:-13.5mm;border:.9mm solid var(--ac)}
-html[data-dzid="8"] .id2 .tb2{left:6mm;width:42mm}
-html[data-dzid="8"] .id2 .qr{right:6mm;top:69mm}
-html[data-dzid="8"] .id2 .sgn{left:6mm;top:69.5mm;width:27mm}
-html[data-dzid="8"] .id2 .ins{left:6mm;right:6mm;top:6mm;color:#333}
-html[data-dzid="8"] .id2 .ins b{color:var(--ad,#e08a1e)}
-html[data-dzid="8"] .id2 .tb3,html[data-dzid="8"] .id2 .bar{left:6mm;right:6mm}
-html[data-dzid="8"] .id2 .ftr{color:var(--ac);left:6mm;bottom:5mm}
+[data-dzid="8"] .id2{background:var(--t2,#f7f9fc)}
+[data-dzid="8"] .id2:before{left:2mm;top:2mm;right:2mm;bottom:2mm;border:.6mm solid var(--ac);border-radius:3mm}
+[data-dzid="8"] .id2:after{left:3.3mm;top:3.3mm;right:3.3mm;bottom:3.3mm;border:.2mm solid var(--ax,#f2a24d);border-radius:2mm}
+[data-dzid="8"] .id2 .hdr{color:var(--ac);left:6mm;right:5mm;top:5.5mm}
+[data-dzid="8"] .id2 .pho{top:17.5mm;width:27mm;height:27mm;margin-left:-13.5mm;border:.9mm solid var(--ac)}
+[data-dzid="8"] .id2 .tb2{left:6mm;width:42mm}
+[data-dzid="8"] .id2 .qr{right:6mm;top:69mm}
+[data-dzid="8"] .id2 .sgn{left:6mm;top:69.5mm;width:27mm}
+[data-dzid="8"] .id2 .ins{left:6mm;right:6mm;top:6mm;color:#333}
+[data-dzid="8"] .id2 .ins b{color:var(--ad,#e08a1e)}
+[data-dzid="8"] .id2 .tb3,[data-dzid="8"] .id2 .bar{left:6mm;right:6mm}
+[data-dzid="8"] .id2 .ftr{color:var(--ac);left:6mm;bottom:5mm}
 /* ID 9 Horizontal band */
-html[data-dzid="9"] .id2{width:85.6mm;height:54mm}
-html[data-dzid="9"] .idg2{grid-template-columns:repeat(2,85.6mm)}
-html[data-dzid="9"] .id2:before{left:0;right:0;top:0;height:13mm;background:var(--ac)}
-html[data-dzid="9"] .id2:after{left:0;right:0;bottom:0;height:1.8mm;background:var(--ax,#f2a24d)}
-html[data-dzid="9"] .id2 .hdr{top:2mm}
-html[data-dzid="9"] .id2 .pho{left:4mm;top:16mm;margin-left:0;width:22mm;height:28mm;border-radius:2mm;border:.8mm solid var(--ax,#f2a24d)}
-html[data-dzid="9"] .id2 .nm{left:30mm;right:3mm;top:15.5mm;text-align:left}
-html[data-dzid="9"] .id2 .ss{left:30mm;right:3mm;top:20.6mm;text-align:left}
-html[data-dzid="9"] .id2 .tb2{left:30mm;width:52mm;top:24.5mm}
-html[data-dzid="9"] .id2 .tb2 td{height:3.2mm}
-html[data-dzid="9"] .id2 .qr{right:3mm;top:auto;bottom:4mm;width:9mm;height:9mm}
-html[data-dzid="9"] .id2 .sgn{left:30mm;top:auto;bottom:3.6mm;width:30mm;height:9mm}
-html[data-dzid="9"] .id2 .ins{left:4mm;right:4mm;top:14.5mm;color:#333;font-size:5pt}
-html[data-dzid="9"] .id2 .ins b{color:var(--ad,#e08a1e)}
-html[data-dzid="9"] .id2 .ins p{margin-bottom:1mm}
-html[data-dzid="9"] .id2 .tb3{left:4mm;right:4mm;top:25mm}
-html[data-dzid="9"] .id2 .bar{left:4mm;right:4mm;top:37mm;height:8mm}
-html[data-dzid="9"] .id2 .bar span{top:8.3mm}
-html[data-dzid="9"] .id2 .ftr{left:4mm;right:3mm;top:2mm;bottom:auto}
+[data-dzid="9"] .id2{width:85.6mm;height:53.98mm}
+[data-dzid="9"] .idg2{grid-template-columns:repeat(2,85.6mm)}
+[data-dzid="9"] .id2:before{left:0;right:0;top:0;height:13mm;background:var(--ac)}
+[data-dzid="9"] .id2:after{left:0;right:0;bottom:0;height:1.8mm;background:var(--ax,#f2a24d)}
+[data-dzid="9"] .id2 .hdr{top:2mm}
+[data-dzid="9"] .id2 .pho{left:4mm;top:16mm;margin-left:0;width:22mm;height:28mm;border-radius:2mm;border:.8mm solid var(--ax,#f2a24d)}
+[data-dzid="9"] .id2 .nm{left:30mm;right:3mm;top:15.5mm;text-align:left}
+[data-dzid="9"] .id2 .ss{left:30mm;right:3mm;top:20.6mm;text-align:left}
+[data-dzid="9"] .id2 .tb2{left:30mm;width:52mm;top:24.5mm}
+[data-dzid="9"] .id2 .tb2 td{height:3.2mm}
+[data-dzid="9"] .id2 .qr{right:3mm;top:auto;bottom:4mm;width:9mm;height:9mm}
+[data-dzid="9"] .id2 .sgn{left:30mm;top:auto;bottom:3.6mm;width:30mm;height:9mm}
+[data-dzid="9"] .id2 .ins{left:4mm;right:4mm;top:14.5mm;color:#333;font-size:5pt}
+[data-dzid="9"] .id2 .ins b{color:var(--ad,#e08a1e)}
+[data-dzid="9"] .id2 .ins p{margin-bottom:1mm}
+[data-dzid="9"] .id2 .tb3{left:4mm;right:4mm;top:25mm}
+[data-dzid="9"] .id2 .bar{left:4mm;right:4mm;top:37mm;height:8mm}
+[data-dzid="9"] .id2 .bar span{top:8.3mm}
+[data-dzid="9"] .id2 .ftr{left:4mm;right:3mm;top:2mm;bottom:auto}
 /* Certificate 2 Elegant */
-html[data-dzcf="2"] .cf{border:.7mm solid var(--ax,#f2a24d);box-shadow:none}
-html[data-dzcf="2"] .cf:before,html[data-dzcf="2"] .cf:after{content:"";position:absolute;width:16mm;height:16mm;border:1.4mm solid var(--ac);z-index:1}
-html[data-dzcf="2"] .cf:before{left:3mm;top:3mm;border-right:0;border-bottom:0}
-html[data-dzcf="2"] .cf:after{right:3mm;bottom:3mm;border-left:0;border-top:0}
-html:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .top{background:transparent;color:var(--ac)}
-html:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .tw{display:none}
-html:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .ft{background:transparent;color:#6b7280;text-align:center;padding:6px 6px 14px}
-html:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .ft:before{display:none}
-html[data-dzcf="2"] .cf .top{padding-left:72px}
-html[data-dzcf="2"] .cf .sg{position:relative}
-html[data-dzcf="2"] .cf .sg:before{content:"";position:absolute;left:50%;top:14mm;width:17mm;height:17mm;margin-left:-8.5mm;border-radius:50%;background:var(--ax,#f2a24d);border:1mm double #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
+[data-dzcf="2"] .cf{border:.7mm solid var(--ax,#f2a24d);box-shadow:none}
+[data-dzcf="2"] .cf:before,[data-dzcf="2"] .cf:after{content:"";position:absolute;width:16mm;height:16mm;border:1.4mm solid var(--ac);z-index:1}
+[data-dzcf="2"] .cf:before{left:3mm;top:3mm;border-right:0;border-bottom:0}
+[data-dzcf="2"] .cf:after{right:3mm;bottom:3mm;border-left:0;border-top:0}
+:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .top{background:transparent;color:var(--ac)}
+:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .tw{display:none}
+:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .ft{background:transparent;color:#6b7280;text-align:center;padding:6px 6px 14px}
+:is([data-dzcf="2"],[data-dzcf="3"],[data-dzcf="4"]) .cf .ft:before{display:none}
+[data-dzcf="2"] .cf .top{padding-left:72px}
+[data-dzcf="2"] .cf .sg{position:relative}
+[data-dzcf="2"] .cf .sg:before{content:"";position:absolute;left:50%;top:14mm;width:17mm;height:17mm;margin-left:-8.5mm;border-radius:50%;background:var(--ax,#f2a24d);border:1mm double #fff;box-shadow:0 0 0 .6mm var(--ax,#f2a24d)}
 /* Certificate 3 Modern */
-html[data-dzcf="3"] .cf{border:0;border-left:16mm solid var(--ac);box-shadow:inset 2.5mm 0 0 0 var(--ax,#f2a24d)}
-html[data-dzcf="3"] .cf .cft{text-align:left;font-family:Arial,sans-serif;letter-spacing:4px;margin-left:30px}
-html[data-dzcf="3"] .cf .cft:after{margin:10px 0 0}
-html[data-dzcf="3"] .cf .cfp{text-align:left;padding:0 30px}
-html[data-dzcf="3"] .cf .cfn{padding:2px 0;margin:10px 30px;font-style:normal;font-family:Arial,sans-serif;text-align:left}
-html[data-dzcf="3"] .cf .sg{padding:70px 30px 26px}
-html[data-dzcf="3"] .cf .ft{text-align:left;padding-left:30px}
+[data-dzcf="3"] .cf{border:0;border-left:16mm solid var(--ac);box-shadow:inset 2.5mm 0 0 0 var(--ax,#f2a24d)}
+[data-dzcf="3"] .cf .cft{text-align:left;font-family:Arial,sans-serif;letter-spacing:4px;margin-left:30px}
+[data-dzcf="3"] .cf .cft:after{margin:10px 0 0}
+[data-dzcf="3"] .cf .cfp{text-align:left;padding:0 30px}
+[data-dzcf="3"] .cf .cfn{padding:2px 0;margin:10px 30px;font-style:normal;font-family:Arial,sans-serif;text-align:left}
+[data-dzcf="3"] .cf .sg{padding:70px 30px 26px}
+[data-dzcf="3"] .cf .ft{text-align:left;padding-left:30px}
 /* Certificate 4 Minimal */
-html[data-dzcf="4"] .cf{border:.35mm solid var(--ac);box-shadow:inset 0 0 0 1.6mm #fff,inset 0 0 0 1.95mm var(--ac)}
-html[data-dzcf="4"] .cf .cft{font-weight:400;font-size:23px;letter-spacing:7px}
-html[data-dzcf="4"] .cf .cft:after{width:34px;height:2px}
-html[data-dzcf="4"] .cf .cfn{border-bottom:0;color:var(--ac);font-style:normal;font-weight:400;font-size:26px;letter-spacing:1px}
+[data-dzcf="4"] .cf{border:.35mm solid var(--ac);box-shadow:inset 0 0 0 1.6mm #fff,inset 0 0 0 1.95mm var(--ac)}
+[data-dzcf="4"] .cf .cft{font-weight:400;font-size:23px;letter-spacing:7px}
+[data-dzcf="4"] .cf .cft:after{width:34px;height:2px}
+[data-dzcf="4"] .cf .cfn{border-bottom:0;color:var(--ac);font-style:normal;font-weight:400;font-size:26px;letter-spacing:1px}
 /* Result card 2 Modern, 3 Minimal */
-html:is([data-dzrc="2"],[data-dzrc="3"]) .rc .tw{display:none}
-html:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ttl{text-align:left;padding-left:18px;margin-top:14px}
-html:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ttl:after{margin-left:0}
-html:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ft{background:transparent;color:#6b7280;text-align:center;padding:6px}
-html:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ft:before{display:none}
-html[data-dzrc="2"] .rc .top{background:var(--t2,#fff8ef);color:var(--ac);border-left:2.2mm solid var(--ac)}
-html[data-dzrc="2"] .rc .gd{background:var(--t2,#fff8ef);margin:0 18px;border-radius:3mm;padding:10px 14px}
-html[data-dzrc="2"] .rc .gd>div{border-bottom:0}
-html[data-dzrc="2"] .rc .rt th{background:transparent;color:var(--ac);border-bottom:2px solid var(--ax,#f2a24d)}
-html[data-dzrc="2"] .rc .rt td{border-bottom:0}
-html[data-dzrc="2"] .rc .rt tr:nth-child(odd) td{background:var(--t2,#fff8ef)}
-html[data-dzrc="2"] .rc .rt tr:nth-child(even) td{background:transparent}
-html[data-dzrc="2"] .rc .sm>div{background:var(--t2,#fff8ef);border:0;border-radius:3mm}
-html[data-dzrc="3"] .rc .top{background:transparent;color:var(--ac);border-bottom:.4mm solid var(--ac)}
-html[data-dzrc="3"] .rc .ttl{letter-spacing:2px}html[data-dzrc="3"] .rc .ttl:after{width:34px}
-html[data-dzrc="3"] .rc .gd>div{border-bottom:.2mm solid #cbd5e1}
-html[data-dzrc="3"] .rc .rt th{background:transparent;color:var(--ac);border-bottom:.3mm solid var(--ac)}
-html[data-dzrc="3"] .rc .rt td{border-bottom:.2mm solid #e5e7eb}
-html[data-dzrc="3"] .rc .rt tr:nth-child(even) td{background:transparent}
-html[data-dzrc="3"] .rc .rt tfoot td{background:transparent!important;border-top:.5mm solid var(--ax,#f2a24d);border-bottom:0}
-html[data-dzrc="3"] .rc .sm>div{border:0;border-bottom:.5mm solid var(--ax,#f2a24d);border-radius:0;background:transparent}
+:is([data-dzrc="2"],[data-dzrc="3"]) .rc .tw{display:none}
+:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ttl{text-align:left;padding-left:18px;margin-top:14px}
+:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ttl:after{margin-left:0}
+:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ft{background:transparent;color:#6b7280;text-align:center;padding:6px}
+:is([data-dzrc="2"],[data-dzrc="3"]) .rc .ft:before{display:none}
+[data-dzrc="2"] .rc .top{background:var(--t2,#fff8ef);color:var(--ac);border-left:2.2mm solid var(--ac)}
+[data-dzrc="2"] .rc .gd{background:var(--t2,#fff8ef);margin:0 18px;border-radius:3mm;padding:10px 14px}
+[data-dzrc="2"] .rc .gd>div{border-bottom:0}
+[data-dzrc="2"] .rc .rt th{background:transparent;color:var(--ac);border-bottom:2px solid var(--ax,#f2a24d)}
+[data-dzrc="2"] .rc .rt td{border-bottom:0}
+[data-dzrc="2"] .rc .rt tr:nth-child(odd) td{background:var(--t2,#fff8ef)}
+[data-dzrc="2"] .rc .rt tr:nth-child(even) td{background:transparent}
+[data-dzrc="2"] .rc .sm>div{background:var(--t2,#fff8ef);border:0;border-radius:3mm}
+[data-dzrc="3"] .rc .top{background:transparent;color:var(--ac);border-bottom:.4mm solid var(--ac)}
+[data-dzrc="3"] .rc .ttl{letter-spacing:2px}[data-dzrc="3"] .rc .ttl:after{width:34px}
+[data-dzrc="3"] .rc .gd>div{border-bottom:.2mm solid #cbd5e1}
+[data-dzrc="3"] .rc .rt th{background:transparent;color:var(--ac);border-bottom:.3mm solid var(--ac)}
+[data-dzrc="3"] .rc .rt td{border-bottom:.2mm solid #e5e7eb}
+[data-dzrc="3"] .rc .rt tr:nth-child(even) td{background:transparent}
+[data-dzrc="3"] .rc .rt tfoot td{background:transparent!important;border-top:.5mm solid var(--ax,#f2a24d);border-bottom:0}
+[data-dzrc="3"] .rc .sm>div{border:0;border-bottom:.5mm solid var(--ax,#f2a24d);border-radius:0;background:transparent}
 /* Fee voucher 2 Modern (side label), 3 Compact (tear-off) */
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvh{background:transparent;color:var(--ac)}
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvh:after{display:none}
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvt{color:var(--ac)}
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvt small{color:#666}
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvr th{background:transparent;color:var(--ac);border-bottom:.4mm solid var(--ac)}
-html:is([data-dzvc="2"],[data-dzvc="3"]) .fvr .tot td{background:transparent;border-top:.4mm solid var(--ax,#f2a24d)}
-html[data-dzvc="2"] .fv{padding-left:10mm;border-top:1mm solid var(--ax,#f2a24d)}
-html[data-dzvc="2"] .fv:before{content:"FEE VOUCHER";position:absolute;left:0;top:0;bottom:0;width:8mm;background:var(--ac);color:#fff;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font:800 7pt Arial,sans-serif;letter-spacing:2.5px}
-html[data-dzvc="3"] .fv{border:.4mm dashed var(--ax,#f2a24d);border-radius:2mm;margin:1mm 2mm}
-html[data-dzvc="3"] .fvp .fv:last-child{border-bottom:.4mm dashed var(--ax,#f2a24d)}
-html[data-dzvc="3"] .fvh{border-bottom:.5mm solid var(--ac);padding:1.5mm 3mm}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvh{background:transparent;color:var(--ac)}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvh:after{display:none}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvt{color:var(--ac)}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvt small{color:#666}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvr th{background:transparent;color:var(--ac);border-bottom:.4mm solid var(--ac)}
+:is([data-dzvc="2"],[data-dzvc="3"]) .fvr .tot td{background:transparent;border-top:.4mm solid var(--ax,#f2a24d)}
+[data-dzvc="2"] .fv{padding-left:10mm;border-top:1mm solid var(--ax,#f2a24d)}
+[data-dzvc="2"] .fv:before{content:"FEE VOUCHER";position:absolute;left:0;top:0;bottom:0;width:8mm;background:var(--ac);color:#fff;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font:800 7pt Arial,sans-serif;letter-spacing:2.5px}
+[data-dzvc="3"] .fv{border:.4mm dashed var(--ax,#f2a24d);border-radius:2mm;margin:1mm 2mm}
+[data-dzvc="3"] .fvp .fv:last-child{border-bottom:.4mm dashed var(--ax,#f2a24d)}
+[data-dzvc="3"] .fvh{border-bottom:.5mm solid var(--ac);padding:1.5mm 3mm}
 .idpg.ls,.idpg.two.ls{grid-template-columns:repeat(2,85.6mm);grid-auto-rows:54mm;height:auto;gap:8mm 6mm}
+/* ID sheet: exact CR80 cards with a 4mm gap (keep in sync with IDG in idPrint), dashed cut outline around every card */
+html .idpg{grid-template-columns:repeat(3,53.98mm);grid-auto-rows:85.6mm;gap:4mm;width:max-content;margin:0 auto;position:relative;justify-content:start;align-content:start}
+html .idpg.two{grid-template-columns:repeat(2,53.98mm)}
+html .idpg.ls,html .idpg.two.ls{grid-template-columns:repeat(2,85.6mm);grid-auto-rows:53.98mm;gap:4mm}
+html .idpg .id2{width:53.98mm;height:85.6mm;margin:0;border-radius:0;box-sizing:border-box}
+html .idpg.ls .id2{width:85.6mm;height:53.98mm}
+.cutg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none;z-index:50;fill:none;stroke:#444;stroke-width:.15;stroke-dasharray:1.6 1.1;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* school logo: shown round / oval (follows the logo's own shape) */
+.mono.lg img{object-fit:contain!important}
+.mono.lg.rd{border-radius:50%!important;overflow:hidden!important;background:#fff!important;border:.4mm solid var(--ax,#f2a24d)!important;box-sizing:border-box}
+.mono.lg.rd img,.id2 .hdr .mono.lg.rd img,.id2 .ftr .mono.lg.rd img{border-radius:0!important;padding:0!important;background:transparent!important}
+.cf .top .mono.lg{height:76px!important;max-width:none!important}
+/* ID card text (portrait designs): larger but still fitting, checked with real font metrics. Landscape designs keep their original sizes. */
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .hdr b{font-size:8.6pt}
+html[data-dzid="4"] .id2 .hdr b,html[data-dzid="9"] .id2 .hdr b{font-size:7.6pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .ftr b{font-size:6.8pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .ss{font-size:6.6pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb2{font-size:6.4pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb2 td{height:4.2mm}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb2:has(tr:nth-child(4)) td{height:3.7mm}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb2 td:first-child{width:18mm;white-space:nowrap}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb3 td:first-child{white-space:nowrap}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .ins{font-size:5.9pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .tb3{font-size:6pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .bar span{font-size:5.8pt}
+html:not([data-dzid="4"]):not([data-dzid="9"]) .id2 .sgn span{font-size:5.4pt}
 </style></head><body>
 <div id="root"></div><div id="pr"></div>
 <script>
@@ -412,6 +441,7 @@ const save=()=>{if(S.sid&&DB.data[S.sid]){DB.data[S.sid].t=Date.now();DIRTY.add(
 const FBCFG=(()=>{let l=0;try{l=localStorage.getItem('erp_local')}catch(e){}return /^(https?|chrome-extension):$/.test(location.protocol)&&!l})()?{apiKey:"AIzaSyD8jkBfLBYyZUPNZE7tsYEUMrKdKow369w",authDomain:"asms-cf4b8.firebaseapp.com",projectId:"asms-cf4b8",storageBucket:"asms-cf4b8.firebasestorage.app",messagingSenderId:"332502039408",appId:"1:332502039408:web:207436a4e5f1cc1ce46db5",measurementId:"G-J5M57JMNEP"}:null;
 let FLUSHING=0;const W=p=>Promise.race([p,new Promise(r=>setTimeout(()=>r(0),4000))]);const META={};let FB=null,GT=null,UNSUB=null,FT=0;const LAST={};const DIRTY=new Set();
 function ld(u){return new Promise(r=>{const e=document.createElement('script');e.src=u;e.onload=r;e.onerror=r;document.head.appendChild(e)})}
+function ldAll(u){return Promise.all(u.map(f=>new Promise(r=>{const e=document.createElement('script');e.src=f;e.async=false;e.onload=r;e.onerror=r;document.head.appendChild(e)})))}
 const cloud=()=>!!(FB&&FB.ok),bkt=(id,n)=>Math.floor((+id||0)/n),mo=d=>String(d||'').slice(0,7)||'0000-00';
 const RULES=`rules_version = '2';
 service cloud.firestore { match /databases/{db}/documents {
@@ -434,15 +464,18 @@ service cloud.firestore { match /databases/{db}/documents {
 // ---- month-based splitting: each Firestore document stays far below the 1 MB limit
 function parts(d){const P={core:{set:d.set,sf:[],n:d.n,tm:d.tm||{},tt:d.tt||[],ac:d.ac||[],tr:d.tr||[],sp:d.sp||[],ic:d.ic||{},tp:d.tp||{},fn:d.fn||{}},meta:{stu:d.st.filter(z=>z.s=='Active').length,all:d.st.length,stf:(d.sf||[]).filter(z=>!z.lf).length,last:d.t||0}},g=(k,f)=>P[k]||(P[k]=f),M=m=>g('m_'+m,{fee:[],att:{},led:[],pay:[],sa:{},dy:[]});
 d.st.forEach(s=>{if(s.pic){const{pic,...r}=s;g('st_'+bkt(s.id,500),[]).push(r);g('ph_s'+bkt(s.id,25),{})[s.id]=pic}else g('st_'+bkt(s.id,500),[]).push(s)});P.core.sf=d.sf.map(f=>{if(!f.pic)return f;const{pic,...r}=f;g('ph_f'+bkt(f.id,25),{})[f.id]=pic;return r});for(const k in d.mk)g('mk_'+k.split('|')[0].replace(/\W/g,'')+'_'+bkt(k.split('|')[1],200),{})[k]=d.mk[k];
-d.fee.forEach(f=>M(mo(f.m)).fee.push(f));d.led.forEach(l=>M(mo(l.d)).led.push(l));d.pay.forEach(p=>M(mo(p.m)).pay.push(p));for(const k in d.att)M(mo(k)).att[k]=d.att[k];for(const k in d.sa)M(mo(k)).sa[k]=d.sa[k];(d.dy||[]).forEach(e=>M(mo(e.d)).dy.push(e));return P}
-function merge(P){const PS={},PF={},d={ac:[],tr:[],sp:[],ic:{},tp:{},tm:{},tt:[],dy:[],st:[],fee:[],att:{},mk:{},sf:[],sa:{},pay:[],led:[],n:0,set:{name:'',addr:'',logo:'',sub:'English,Urdu,Math,Science,Islamiat'}};for(const k in P){const p=P[k];if(k=='meta'){}else if(k=='core'){Object.assign(d.set,p.set||{});d.sf=p.sf||[];d.n=p.n||0;d.tm=p.tm||{};d.tt=p.tt||[];d.ac=p.ac||[];d.tr=p.tr||[];d.sp=p.sp||[];d.ic=p.ic||{};d.tp=p.tp||{};d.fn=p.fn||{}}else if(k.startsWith('ph_s'))Object.assign(PS,p);else if(k.startsWith('ph_f'))Object.assign(PF,p);else if(k.startsWith('st_'))d.st.push(...p);else if(k.startsWith('mk_'))Object.assign(d.mk,p);else{d.fee.push(...p.fee);d.dy.push(...(p.dy||[]));d.led.push(...p.led);d.pay.push(...p.pay);Object.assign(d.att,p.att);Object.assign(d.sa,p.sa)}}d.st.forEach(s=>{if(PS[s.id])s.pic=PS[s.id]});d.sf.forEach(f=>{if(PF[f.id])f.pic=PF[f.id]});d.st.sort((a,b)=>a.id-b.id);return d}
-async function pullSchool(sid){const sn=await FB.f.collection('schools/'+sid+'/parts').get(),P={},L={};sn.docs.forEach(x=>{L[x.id]=x.data().j;P[x.id]=JSON.parse(L[x.id])});DB.data[sid]=merge(P);LAST[sid]=L;lsave()}
-async function fbInit(){const c=FBCFG||CFG.fb;if(!c)return;if(!/^(https?|chrome-extension):$/.test(location.protocol)){S.fe='Cloud sync needs the app to be opened from an https:// web address, but it is open from '+location.protocol+'// (a local file). Upload it to Firebase Hosting, GitHub Pages or Netlify and open that link. You can also use offline mode on this device.';render();return}const b='https://www.gstatic.com/firebasejs/10.12.0/';try{for(const f of['app','auth','firestore'])await ld(b+'firebase-'+f+'-compat.js');if(!window.firebase)throw 0;firebase.initializeApp(c);FB={a:firebase.auth(),f:firebase.firestore()};try{await FB.f.enablePersistence({synchronizeTabs:true})}catch(e){console.log('persistence',e)}if(navigator.onLine){try{S.bs=(await FB.f.doc('meta/bootstrap').get()).exists}catch(e){S.bs=true}}else S.bs=true;FB.ok=1;S.fe='';const cu=await new Promise(r=>FB.a.onAuthStateChanged(r));if(cu)try{await enterCloud(cu)}catch(e){cErr(e)}render()}catch(e){FB=null;S.fe='Could not connect to Firebase. Check the config, enabled sign-in methods and Firestore.';render()}}
-async function enterCloud(cu,d){const p=await FB.f.doc('users/'+cu.uid).get();if(!p.exists){await FB.a.signOut();throw'This login has no school account. Register with a School Key, or ask your admin.'}const q=p.data();if(d!==undefined&&(q.role=='dev')!=!!d){await FB.a.signOut();throw'Wrong username or password'}
+d.fee.forEach(f=>M(mo(f.m)).fee.push(f));d.led.forEach(l=>M(mo(l.d)).led.push(l));d.pay.forEach(p=>M(mo(p.m)).pay.push(p));for(const k in d.att)M(mo(k)).att[k]=d.att[k];for(const k in d.sa)M(mo(k)).sa[k]=d.sa[k];(d.dy||[]).forEach(e=>M(mo(e.d)).dy.push(e));if(d.inv)P.inv={items:d.inv};if(d.ilog)P.ilog={l:d.ilog.slice(-1000)};return P}
+function merge(P){const PS={},PF={},d={ac:[],tr:[],sp:[],ic:{},tp:{},tm:{},tt:[],dy:[],st:[],fee:[],att:{},mk:{},sf:[],sa:{},pay:[],led:[],n:0,set:{name:'',addr:'',logo:'',sub:'English,Urdu,Math,Science,Islamiat'}};for(const k in P){const p=P[k];if(k=='meta'){}else if(k=='core'){Object.assign(d.set,p.set||{});d.sf=p.sf||[];d.n=p.n||0;d.tm=p.tm||{};d.tt=p.tt||[];d.ac=p.ac||[];d.tr=p.tr||[];d.sp=p.sp||[];d.ic=p.ic||{};d.tp=p.tp||{};d.fn=p.fn||{}}else if(k.startsWith('ph_s'))Object.assign(PS,p);else if(k.startsWith('ph_f'))Object.assign(PF,p);else if(k.startsWith('st_'))d.st.push(...p);else if(k.startsWith('mk_'))Object.assign(d.mk,p);else if(k=='inv')d.inv=p.items||[];else if(k=='ilog')d.ilog=p.l||[];else{d.fee.push(...p.fee);d.dy.push(...(p.dy||[]));d.led.push(...p.led);d.pay.push(...p.pay);Object.assign(d.att,p.att);Object.assign(d.sa,p.sa)}}d.st.forEach(s=>{if(PS[s.id])s.pic=PS[s.id]});d.sf.forEach(f=>{if(PF[f.id])f.pic=PF[f.id]});d.st.sort((a,b)=>a.id-b.id);return d}
+async function pullSchool(sid,fc){const col=FB.f.collection('schools/'+sid+'/parts');let sn=0;if(fc){try{sn=await col.get({source:'cache'});if(!sn.docs.some(x=>x.id=='core'))sn=0}catch(e){sn=0}}if(!sn)sn=await col.get();const P={},L={};sn.docs.forEach(x=>{L[x.id]=x.data().j;P[x.id]=JSON.parse(L[x.id])});DB.data[sid]=merge(P);LAST[sid]=L;lsave()}
+async function fbInit(){const c=FBCFG||CFG.fb;if(!c)return;if(!/^(https?|chrome-extension):$/.test(location.protocol)){S.fe='Cloud sync needs the app to be opened from an https:// web address, but it is open from '+location.protocol+'// (a local file). Upload it to Firebase Hosting, GitHub Pages or Netlify and open that link. You can also use offline mode on this device.';render();return}const b='https://www.gstatic.com/firebasejs/10.12.0/';try{await ldAll(['app','auth','firestore'].map(f=>b+'firebase-'+f+'-compat.js'));if(!window.firebase)throw 0;firebase.initializeApp(c);FB={a:firebase.auth(),f:firebase.firestore()};try{FB.f.settings({experimentalAutoDetectLongPolling:true,merge:true})}catch(e){console.log('settings',e)}const au=new Promise(r=>FB.a.onAuthStateChanged(r));try{await FB.f.enablePersistence({synchronizeTabs:true})}catch(e){console.log('persistence',e)}S.bs=true;if(navigator.onLine)FB.f.doc('meta/bootstrap').get().then(d=>{if(!d.exists){S.bs=false;if(!S.u)rr()}}).catch(()=>{});FB.ok=1;S.fe='';const cu=await au;if(cu)try{await enterCloud(cu)}catch(e){cErr(e)}render()}catch(e){FB=null;S.fe='Could not connect to Firebase. Check the config, enabled sign-in methods and Firestore.';render()}}
+const rr=()=>{const a=document.activeElement;if(S.u&&(!a||!/INPUT|SELECT|TEXTAREA/.test(a.tagName)))render()};
+async function enterCloud(cu,d){const fast=d===undefined,srv=r=>r.get(),gc=async r=>{if(fast)try{const z=await r.get({source:'cache'});if(z.exists||(z.docs&&z.docs.length))return z}catch(e){}return r.get()};const p=await gc(FB.f.doc('users/'+cu.uid));if(!p.exists){await FB.a.signOut();throw'This login has no school account. Register with a School Key, or ask your admin.'}const q=p.data();if(d!==undefined&&(q.role=='dev')!=!!d){await FB.a.signOut();throw'Wrong username or password'}
 const U=x=>x.docs.map(z=>({...z.data(),e:z.data().email,r:z.data().r||z.data().role,uid:z.id}));S.dm=q.role=='dev';
-if(q.role=='dev'){DB.schools=(await FB.f.collection('schools').get()).docs.map(z=>z.data());DB.users=U(await FB.f.collection('users').get());await Promise.all(DB.schools.map(async z=>{try{const m=await FB.f.doc('schools/'+z.id+'/parts/meta').get();if(m.exists)META[z.id]=JSON.parse(m.data().j)}catch(e){}}))}
-else{DB.schools=[(await FB.f.doc('schools/'+q.sid).get()).data()];DB.users=q.role=='a'?U(await FB.f.collection('users').where('sid','==',q.sid).get()):[];await pullSchool(q.sid)}
-enter({e:q.email,r:q.role,sid:q.sid||null,uid:cu.uid})}
+const loadDev=async g=>{const[a,b]=await Promise.all([g(FB.f.collection('schools')),g(FB.f.collection('users'))]);DB.schools=a.docs.map(z=>z.data());DB.users=U(b);await Promise.all(DB.schools.map(async z=>{try{const m=await g(FB.f.doc('schools/'+z.id+'/parts/meta'));if(m.exists)META[z.id]=JSON.parse(m.data().j)}catch(e){}}))};
+const loadSch=async g=>{const[sc,us]=await Promise.all([g(FB.f.doc('schools/'+q.sid)),q.role=='a'?g(FB.f.collection('users').where('sid','==',q.sid)):0]);DB.schools=[sc.data()];DB.users=us?U(us):[]};
+if(q.role=='dev')await loadDev(gc);else await Promise.all([loadSch(gc),pullSchool(q.sid,fast)]);
+enter({e:q.email,r:q.role,sid:q.sid||null,uid:cu.uid});
+if(fast){FB.f.doc('users/'+cu.uid).get({source:'server'}).then(async z=>{if(!z.exists){await FB.a.signOut();location.reload()}else if(z.data().role!=q.role||z.data().sid!=q.sid)location.reload()}).catch(()=>{});(q.role=='dev'?loadDev(srv):loadSch(srv)).then(rr).catch(e=>console.log('refresh',e))}}
 const cErr=e=>{const c=e&&e.code||'',M={'auth/email-already-in-use':'Username is already registered','auth/weak-password':'Password is too weak (use 6+ characters)','auth/too-many-requests':'Too many attempts. Try again later.','auth/operation-not-supported-in-this-environment':'Firebase sign-in does not work when the app is opened from a local file (content:// or file://). Open it from an https:// web address (Firebase Hosting, GitHub Pages or Netlify).','auth/operation-not-allowed':'Email/Password sign-in is not enabled. In Firebase Console go to Authentication > Sign-in method and enable Email/Password.','auth/network-request-failed':'No internet connection or Firebase is unreachable.','auth/invalid-api-key':'The Firebase API key in the config is wrong.','auth/api-key-not-valid.-please-pass-a-valid-api-key.':'The Firebase API key in the config is wrong.','auth/configuration-not-found':'Authentication is not set up. In Firebase Console open Authentication and click Get started.','auth/invalid-email':'Username contains characters that are not allowed.','auth/user-not-found':'Wrong username or password','auth/wrong-password':'Wrong username or password','auth/invalid-credential':'Wrong username or password','permission-denied':'Firestore rules blocked this. Publish the rules shown in Cloud sync > Firebase, then try again.','unavailable':'Firestore is unreachable. Check the internet connection.','failed-precondition':'Firestore database is not created yet. Create it in Firebase Console > Firestore Database.'};toast(typeof e=='string'?e:M[c]||('Could not complete: '+(c||(e&&e.message)||'unknown error')))};
 async function cloudLogin(d){try{let em=v('le');if(d&&!em){try{em=localStorage.getItem('erp_devu')||''}catch(e){}}await enterCloud((await FB.a.signInWithEmailAndPassword(aE(em),v('lp'))).user,!!d);if(d)try{localStorage.setItem('erp_devu',em)}catch(e){}}catch(e){cErr(e)}}
 async function cloudSetup(){const e=nu(v('se'));if(!okE(e)||v('sp').length<6||v('sp')!=v('sp2'))return toast('Username and a 6+ character password, typed twice, are required');let cu;try{cu=(await FB.a.createUserWithEmailAndPassword(aE(e),v('sp'))).user;const b=FB.f.batch();b.set(FB.f.doc('users/'+cu.uid),{email:e,role:'dev'});b.set(FB.f.doc('meta/bootstrap'),{t:Date.now()});await b.commit();S.bs=true;await enterCloud(cu,true)}catch(x){if(cu&&!S.u)await cu.delete().catch(()=>{});cErr(x)}}
@@ -470,11 +503,11 @@ function out(){if(UNSUB){UNSUB();UNSUB=null}if(cloud())FB.a.signOut();try{sessio
 let S={u:null,sid:null,pg:'dash',q:'',tab:0,dm:location.hash=='#developer'};
 addEventListener('hashchange',()=>{if(!S.u){S.dm=location.hash=='#developer';render()}});
 const D=()=>DB.data[S.sid],ST=()=>D().st,nm=id=>(ST().find(s=>s.id==id)||{}).n||'-';
-const NAV=[['dash','Dashboard','atcs'],['st','Students','atcs'],['sf','Staff & Payroll','ac'],['acc','Accounts','ac'],['cert','Certificates','a'],['rep','Reports','ac'],['set','Settings','a'],['me','My Account','atcs']];
-const MODS=[['st','Students'],['fee','Fees'],['att','Attendance'],['ex','Exams'],['pro','Promotion'],['sf','Staff & Payroll'],['acc','Accounts'],['cert','Certificates'],['rep','Reports'],['tt','Teachers & timetable'],['dy','Diary & homework'],['drv','Google Drive backup']],PLANS={Basic:['st','fee','att'],Standard:['st','fee','att','tt','dy','ex','acc','rep','cert','drv'],Premium:MODS.map(m=>m[0])};
-const SC=()=>DB.schools.find(z=>z.id==S.sid)||{},okF=id=>{const c=SC();if(id=='fund')id='acc';if(id=='dash'||id=='set'||id=='me')return true;if(c.sus||(c.exp&&c.exp<td()))return false;if(id=='sf')return true;return!c.feat||c.feat.includes(id)||((id=='tt'||id=='dy')&&!c.fv2)};
+const NAV=[['dash','Dashboard','atcs'],['st','Students','atcs'],['sf','Staff & Payroll','ac'],['acc','Accounts','ac'],['inv','Inventory','ac'],['cert','Certificates','a'],['rep','Reports','ac'],['res','Results & Archive','at'],['set','Settings','a'],['me','My Account','atcs']];
+const MODS=[['st','Students'],['fee','Fees'],['att','Attendance'],['ex','Exams'],['pro','Promotion'],['sf','Staff & Payroll'],['acc','Accounts'],['cert','Certificates'],['rep','Reports'],['res','Results & Archive'],['tt','Teachers & timetable'],['dy','Diary & homework'],['drv','Google Drive backup']],PLANS={Basic:['st','fee','att'],Standard:['st','fee','att','tt','dy','ex','acc','rep','res','cert','drv'],Premium:MODS.map(m=>m[0])};
+const SC=()=>DB.schools.find(z=>z.id==S.sid)||{},okF=id=>{const c=SC();if(id=='fund'||id=='inv')id='acc';if(id=='dash'||id=='set'||id=='me')return true;if(c.sus||(c.exp&&c.exp<td()))return false;if(id=='sf')return true;return!c.feat||c.feat.includes(id)||(id=='res'&&(c.feat.includes('rep')||c.feat.includes('ex')))||((id=='tt'||id=='dy')&&!c.fv2)};
 const mkSchool=(n)=>{let id='s'+Date.now();while(DB.schools.some(z=>z.id==id))id+='x';DIRTY.add(id);DB.schools.push({id,plan:'Standard',feat:PLANS.Standard,exp:'',max:0,created:Date.now(),n,key:'SCH-'+Math.random().toString(36).slice(2,8).toUpperCase(),used:0});DB.data[id]={st:[],fee:[],att:{},mk:{},sf:[],sa:{},pay:[],led:[],n:0,set:{name:n,addr:'',logo:'',sub:'English,Urdu,Math,Science,Islamiat'}};save()};
-function go(p){if(S.u&&STT.some(t=>t[0]==p&&p!='sl')){if(!stTabs().some(t=>t[0]==p))return;(S.sb=S.sb||{}).st=p;p='st'}if(S.u&&!navOf().some(n=>n[0]==p))return;S.ed=null;S.pp=null;S.se=null;S.mo=false;S.pg=p;render()}
+function go(p){if(S.u&&STT.some(t=>t[0]==p&&p!='sl')){if(!stTabs().some(t=>t[0]==p))return;(S.sb=S.sb||{}).st=p;p='st'}if(S.u&&!navOf().some(n=>n[0]==p))return;S.ed=null;S.pp=null;S.se=null;S.xe=null;S.xm=null;S.mo=false;S.pg=p;render()}
 function pg(){try{return P[S.pg]()}catch(e){console.error(e);return'<div class="card"><h3>Something went wrong</h3><p>This page could not load. Try another page or reload.</p></div>'}}
 async function H(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('erp:'+p));return[...new Uint8Array(b)].map(z=>z.toString(16).padStart(2,'0')).join('')}catch(e){let h=5381;for(const c of 'erp:'+p)h=(h*33)^c.charCodeAt(0);return'x'+(h>>>0).toString(16)}}
 const okE=e=>e.length>=1&&e.length<=60;
@@ -600,15 +633,16 @@ const OR='var(--ax,#f2a24d)',silh='<svg viewBox="0 0 100 100"><circle cx="50" cy
 idBgF=`<svg class="bg" viewBox="0 0 540 856" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H540V235C455 245 385 325 270 332C160 338 90 285 0 268Z" style="fill:var(--ac)"/><path d="M540 185V245C485 255 425 300 350 322C405 255 475 205 540 185Z" style="fill:${OR}"/><path d="M0 856V775C65 765 125 805 185 856Z" style="fill:var(--ac)"/><path d="M190 856C320 790 435 770 540 790V856Z" style="fill:${OR}"/></svg>`,
 idBgB=`<svg class="bg" viewBox="0 0 540 856" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H540V215C455 225 385 300 270 305C160 310 90 265 0 250Z" style="fill:var(--ac)"/><path d="M540 160V222C485 232 425 275 350 297C405 232 475 182 540 160Z" style="fill:${OR}"/><path d="M0 856V700C120 690 210 735 300 740C400 745 470 715 540 680V856Z" style="fill:var(--ac)"/><path d="M540 700V780C470 775 410 750 330 742C410 740 480 725 540 700Z" style="fill:${OR}"/></svg>`,
 sgnB=()=>{const s=D().set;return`<div class="sgn">${s.sig?`<img src="${x(s.sig)}">`:''}<span class="pl">${s.hn?x(s.hn)+' · ':''}Principal</span></div>`},
-idF=s=>{const n=x(s.n),fs=s.n.length>22?6:s.n.length>17?7.2:8.4,q=qrSvg('ADM:'+pad(s.id)+'|'+s.n+'|'+s.c+'-'+s.sec);return`<div class="id2">${idBgF}<div class="hdr">${mono()}<b>${x(D().set.name)}</b></div><div class="pho">${s.pic?`<img src="${x(s.pic)}" style="width:100%;height:100%;object-fit:cover;display:block">`:silh}</div><div class="nm" style="font-size:${fs}pt">${n}</div><div class="ss">SESSION: ${x(ses())}</div><table class="tb2"><tr><td>Admission No:</td><td>${pad(s.id)}</td></tr><tr><td>Class:</td><td>${x(s.c)}${s.sec?' - '+x(s.sec):''}</td></tr><tr><td>Date of Birth:</td><td>${x(s.dob||'-')}</td></tr></table>${q?`<div class="qr">${q}</div>`:''}${sgnB()}</div>`},
+idF=s=>{const n=x(s.n),fs=fitPt(s.n,46.5,9.4,6.2,6),q=qrSvg('ADM:'+pad(s.id)+'|'+s.n+'|'+s.c+'-'+s.sec);return`<div class="id2">${idBgF}<div class="hdr">${mono()}<b>${x(D().set.name)}</b></div><div class="pho">${s.pic?`<img src="${x(s.pic)}" style="width:100%;height:100%;object-fit:cover;display:block">`:silh}</div><div class="nm" style="font-size:${fs}pt">${n}</div><div class="ss">SESSION: ${x(ses())}</div><table class="tb2"><tr><td>Admission No:</td><td>${pad(s.id)}</td></tr><tr><td>Class:</td><td>${x(s.c)}${s.sec?' - '+x(s.sec):''}</td></tr><tr><td>Date of Birth:</td><td>${x(s.dob||'-')}</td></tr></table>${q?`<div class="qr">${q}</div>`:''}${sgnB()}</div>`},
 idB=(s,code)=>{const st=D().set,id=code||pad(s.id);return`<div class="id2">${idBgB}<div class="ins"><p><b>Instructions:</b> This card is the property of ${x(st.name)}. If found, please return it to the school office.</p><p><b>Valid:</b> For the ${x(ses())} session.</p></div><table class="tb3"><tr><td>Phone:</td><td>${x(st.tel||'-')}</td></tr>${st.email?`<tr><td>Email:</td><td>${x(st.email)}</td></tr>`:''}<tr><td>Address:</td><td>${x(st.addr||'-')}</td></tr></table><div class="bar">${bc128(id)}<span>${id}</span></div><div class="ftr">${mono()}<b>${x(st.name)}</b></div></div>`};
 const stfNo=f=>{if(!f.no){f.no=Math.max(0,...(D().sf||[]).map(z=>+z.no||0))+1}return'S-'+String(f.no).padStart(3,'0')},
-idSF=f=>{const n=x(f.n),fs=f.n.length>22?6:f.n.length>17?7.2:8.4,no=stfNo(f),q=qrSvg('STF:'+no+'|'+f.n+'|'+(f.r||''));return`<div class="id2">${idBgF}<div class="hdr">${mono()}<b>${x(D().set.name)}</b></div><div class="pho">${f.pic?`<img src="${x(f.pic)}" style="width:100%;height:100%;object-fit:cover;display:block">`:silh}</div><div class="nm" style="font-size:${fs}pt">${n}</div><div class="ss"${(f.r||'').length>26?' style="font-size:5pt"':''}>${x((f.r||'STAFF').toUpperCase())}</div><table class="tb2"><tr><td>Staff No:</td><td>${no}</td></tr><tr><td>CNIC:</td><td>${x(f.cn||'-')}</td></tr><tr><td>Cell:</td><td>${x(f.ph||'-')}</td></tr><tr><td>Joined:</td><td>${x(f.jd||'-')}</td></tr></table>${q?`<div class="qr">${q}</div>`:''}${sgnB()}</div>`},
+idSF=f=>{const n=x(f.n),fs=fitPt(f.n,46.5,9.4,6.2,6),no=stfNo(f),q=qrSvg('STF:'+no+'|'+f.n+'|'+(f.r||''));return`<div class="id2">${idBgF}<div class="hdr">${mono()}<b>${x(D().set.name)}</b></div><div class="pho">${f.pic?`<img src="${x(f.pic)}" style="width:100%;height:100%;object-fit:cover;display:block">`:silh}</div><div class="nm" style="font-size:${fs}pt">${n}</div><div class="ss"${(f.r||'').length>26?' style="font-size:5pt"':''}>${x((f.r||'STAFF').toUpperCase())}</div><table class="tb2"><tr><td>Staff No:</td><td>${no}</td></tr><tr><td>CNIC:</td><td>${x(f.cn||'-')}</td></tr><tr><td>Cell:</td><td>${x(f.ph||'-')}</td></tr><tr><td>Joined:</td><td>${x(f.jd||'-')}</td></tr></table>${q?`<div class="qr">${q}</div>`:''}${sgnB()}</div>`},
 idSB=f=>idB(f,stfNo(f));
 async function stfCards(id){const A=(D().sf||[]).filter(f=>!f.lf),l=id?A.filter(f=>f.id==id):A;if(!l.length)return toast('No staff members to print');l.forEach(stfNo);save();await idPrint(l,id?'pair':(S.idm||'duplex'),idSF,idSB)}
 const idList=(c,sec)=>ST().filter(s=>s.s=='Active'&&inA(s)&&(!c||s.c==c)&&(!sec||dn(s.sec)==dn(sec))).sort((a,b)=>String(a.c).localeCompare(String(b.c),undefined,{numeric:true})||String(a.sec).localeCompare(String(b.sec))||String(a.n).localeCompare(String(b.n)));
 const idListOld=()=>{const q=(S.q||'').toLowerCase();return ST().filter(s=>s.s=='Active'&&inA(s)&&(!S.fc||s.c==S.fc)&&(!q||(s.n+s.f+s.id).toLowerCase().includes(q))).sort((a,b)=>String(a.c).localeCompare(String(b.c),undefined,{numeric:true})||String(a.sec).localeCompare(String(b.sec))||String(a.n).localeCompare(String(b.n)))};
-async function idPrint(l,mode,F,B){F=F||idF;B=B||idB;const lc=['4','9'].includes(dzCur('id')),cols=lc?2:3,per=lc?8:9;if(!l.length)return toast('No cards to print for this selection');toast('Preparing ID cards...');await qrLoad();if(mode=='pair')return prn(`<div class="idpg two${lc?' ls':''}">${F(l[0])}${B(l[0])}</div>`,1);const pgs=[];for(let i=0;i<l.length;i+=per)pgs.push(l.slice(i,i+per));let o=pgs.map(c=>`<div class="idpg${lc?' ls':''}">${c.map(s=>F(s)).join('')}</div>`).join('');if(mode=='duplex')o+=pgs.map(c=>{const r=[];for(let i=0;i<c.length;i+=cols){const w=c.slice(i,i+cols).map(s=>B(s));while(w.length<cols)w.push('<div></div>');r.push(...w.reverse())}return`<div class="idpg${lc?' ls':''}">${r.join('')}</div>`}).join('');prn(o,1)}
+function fitPt(t,mm,mx,mn,fb){const u=String(t||'').toUpperCase();try{const c=fitPt.c||(fitPt.c=document.createElement('canvas').getContext('2d'));for(let p=mx;p>=mn;p=Math.round((p-.2)*10)/10){c.font='800 '+p+'pt Arial,Helvetica,sans-serif';if(c.measureText(u).width*25.4/96<=mm)return p}return fb}catch(e){return u.length>22?6:u.length>17?7.2:8.4}}
+async function idPrint(l,mode,F,B){F=F||idF;B=B||idB;const lc=['4','9'].includes(dzCur('id')),cols=lc?2:3,per=lc?8:9;const CW=lc?85.6:53.98,CH=lc?53.98:85.6,q2=n=>+n.toFixed(2),IDG=4,cut=(n,m,rev)=>{const nc=m||cols,nr=m?1:Math.ceil(n/cols);let p='';for(let i=0;i<n;i++){let c=m?i:i%cols;const r=m?0:Math.floor(i/cols);if(rev)c=nc-1-c;p+=`<rect x="${q2(c*(CW+IDG))}" y="${q2(r*(CH+IDG))}" width="${q2(CW)}" height="${q2(CH)}"/>`}const W=nc*CW+(nc-1)*IDG,H=nr*CH+(nr-1)*IDG;return`<svg class="cutg" style="width:${q2(W)}mm;height:${q2(H)}mm" viewBox="0 0 ${q2(W)} ${q2(H)}">${p}</svg>`};if(!l.length)return toast('No cards to print for this selection');toast('Preparing ID cards... Print at 100% scale (not Fit to page)');await qrLoad();if(mode=='pair')return prn(`<div class="idpg two${lc?' ls':''}">${cut(2,2)}${F(l[0])}${B(l[0])}</div>`,1);const pgs=[];for(let i=0;i<l.length;i+=per)pgs.push(l.slice(i,i+per));let o=pgs.map(c=>`<div class="idpg${lc?' ls':''}">${cut(c.length)}${c.map(s=>F(s)).join('')}</div>`).join('');if(mode=='duplex')o+=pgs.map(c=>{const r=[];for(let i=0;i<c.length;i+=cols){const w=c.slice(i,i+cols).map(s=>B(s));while(w.length<cols)w.push('<div></div>');r.push(...w.reverse())}return`<div class="idpg${lc?' ls':''}">${cut(c.length,0,true)}${r.join('')}</div>`}).join('');prn(o,1)}
 
 // ===== ID card centre: class/section wise student cards, staff cards, head signature =====
 function idTab(){const s=D().set,c=S.idc||'',sc=S.ids||'',n=idList(c,sc).length,A=(D().sf||[]).filter(f=>!f.lf).length,md=`<select onchange="S.idm=this.value"><option value="duplex" ${(S.idm||'duplex')=='duplex'?'selected':''}>Fronts + backs (double-sided)</option><option value="front" ${S.idm=='front'?'selected':''}>Fronts only</option></select>`;
@@ -694,7 +728,7 @@ function delDup(id){const d=D(),i=d.st.findIndex(z=>z.id==id);if(i<0)return;if(d
 function addSt(){if(!v('n'))return toast('Name required');if((+v('fe')||0)<0||(v('ph')&&v('ph').replace(/\D/g,'').length<10))return toast('Enter a valid phone (10+ digits) and a fee of 0 or more');const dp=dupOf(v('n'),v('f'),v('bf'),v('nc'),S.ed);if(dp&&dupAsk(dp,v('bf')))return;const lim=SC().max;if(!S.ed&&lim&&ST().filter(z=>z.s=='Active').length>=lim)return toast('Student limit of your plan ('+lim+') reached. Contact the platform developer.');const d=D();if(S.ed){Object.assign(ST().find(z=>z.id==S.ed),{n:v('n'),f:v('f'),c:v('nc'),sec:v('sec'),ph:v('ph').replace(/\D/g,''),fee:+v('fe')||0,dob:v('dob'),gen:v('gen'),adr:v('adr'),bf:v('bf'),bg:v('bg'),em:v('em').replace(/\D/g,''),...(S.pp?{pic:S.pp}:{})});S.ed=null;S.pp=null;save();return render()}ST().push({id:String(++d.n),n:v('n'),f:v('f'),c:v('nc'),sec:v('sec'),ph:v('ph').replace(/\D/g,''),fee:+v('fe')||0,dob:v('dob'),gen:v('gen'),adr:v('adr'),bf:v('bf'),bg:v('bg'),em:v('em').replace(/\D/g,''),s:'Active',d:td(),...(S.pp?{pic:S.pp}:{})});S.pp=null;save();render()}
 function tog(id){const s=ST().find(z=>z.id==id);s.s=s.s=='Active'?'Left':'Active';save();render()}
 const ac=()=>D().set.col||'#1e3a8a',ini=()=>(D().set.name||'S').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase(),
-mono=()=>`<div class="mono${D().set.logo?' lg':''}">${D().set.logo?`<img src="${x(D().set.logo)}">`:x(ini())}</div>`,
+mono=()=>`<div class="mono${D().set.logo?' lg'+(D().set.lgs=='round'?' rd':''):''}">${D().set.logo?`<img src="${x(D().set.logo)}">`:x(ini())}</div>`,
 wm=()=>`<div class="wm">${D().set.logo?`<img src="${x(D().set.logo)}">`:`<b>${x(ini())}</b>`}</div>`,
 tph=()=>`<div class="top">${mono()}<div><h1>${x(D().set.name)}</h1><p>${x(D().set.addr)}${D().set.tel?' · Tel: '+x(D().set.tel):''}</p></div></div><svg class="tw" viewBox="0 0 720 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M330 12C450 36 600 40 720 28V0H330Z" style="fill:var(--ax,#f2a24d)"/><path d="M0 0H720V14C600 30 470 30 340 20C210 10 100 8 0 26Z" style="fill:var(--ac)"/></svg>`,
 hd=()=>`<div class="hd">${mono()}<h2>${x(D().set.name)}</h2><h4>${x(D().set.addr)}</h4></div>`,
@@ -818,8 +852,35 @@ function unpay(id){const m=S.sm||MO;D().pay=D().pay.filter(z=>!(z.f==id&&z.m==m)
 function delL(i){if(confirm('Delete this entry?')){D().led.splice(i,1);save();render()}}
 P.acc=()=>{const d=D(),l=d.led,A=ACS(),sel=A.some(a=>a.id==S.af)?S.af:'',adm=RC[S.u.r]=='a',i=l.filter(z=>z.t=='i').reduce((s,z)=>s+z.a,0),e=l.filter(z=>z.t=='e').reduce((s,z)=>s+z.a,0),tot=A.reduce((s,a)=>s+acBal(a.id),0);
 return SBT('acc',[['ov','Overview',`<div class="g"><div class="card st"><b>${Rs(i)}</b><span>Income</span></div><div class="card st"><b>${Rs(e)}</b><span>Expense</span></div><div class="card st"><b style="color:var(--${i>=e?'ok':'er'})">${Rs(Math.abs(i-e))}</b><span>${i>=e?'Profit':'Loss'}</span></div><div class="card st"><b>${Rs(tot)}</b><span>In all accounts</span></div></div><div class="card"><h3>Accounts and funds</h3><div class="g">${A.map(a=>{const b=acBal(a.id);return`<div class="card st aco${sel==a.id?' on':''}" onclick="S.af='${x(a.id)}';(S.sb=S.sb||{}).acc='lg';render()"><b${b<0?' style="color:var(--er)"':''}>${Rs(b)}</b><span dir="auto">${x(a.n)}</span></div>`}).join('')}</div>${sel?'<button class="s m" onclick="S.af=\'\';render()">Show all accounts</button>':'<small>Tap an account to open its ledger.</small>'}</div>`],['lg','Ledger',`<div class="card"><h3>Add entry</h3><div class="row"><select id="lt"><option value="i">Income</option><option value="e">Expense</option></select>${acSel('lac',sel||fac())}<input id="lh" placeholder="Head (Rent, Books...)"><input id="la" type="number" placeholder="Amount"></div><div class="row"><input id="ldt" type="date" value="${td()}"><input id="lnote" placeholder="Note (optional)"><button onclick="addLed()">Add</button></div></div>${sel?'<button class="s m" style="margin-bottom:10px" onclick="S.af=\'\';render()">← All accounts</button>':''}<div class="card"><h3 dir="auto">${sel?x(acN(sel))+' · ledger':'All entries'}</h3>${sel?`<div class="row"><button class="s m" onclick="prAc('${x(sel)}')">Print statement</button></div>${stmtView(sel)}`:list([...l].reverse().slice(0,40),z=>`<div class="it"><span>${x(z.h)} ${x(z.n)}<small>${z.d} · <span dir="auto">${x(acN(acOf(z)))}</span></small></span><span><b style="color:var(--${z.t=='i'?'ok':'er'})">${z.t=='i'?'+':'-'}${Rs(z.a)}</b> ${z.k?'':`<button class="m s" onclick="delL(${l.indexOf(z)})">✕</button>`}</span></div>`)}</div>`],['tf','Transfers',`<div class="card"><h3>Transfer between accounts</h3><div class="row">${acSel('tf',A[0].id)}${acSel('tto',(A[1]||A[0]).id)}<input id="tam" type="number" placeholder="Amount"></div><div class="row"><input id="tdt" type="date" value="${td()}"><input id="tnote" placeholder="Note (optional)"><button onclick="addTr()">Transfer</button></div>${TRS().length?[...TRS()].reverse().slice(0,8).map(t=>`<div class="it"><span><span dir="auto">${x(acN(t.f))}</span> → <span dir="auto">${x(acN(t.t))}</span>${t.n?' · '+x(t.n):''}<small>${t.d}</small></span><span><b>${Rs(t.a)}</b> <button class="m s" onclick="delTr(${t.id})">✕</button></span></div>`).join(''):''}</div>`],...(adm?[['mg','Manage accounts',`<div class="card"><h3>Manage accounts</h3><p class="hp">Name on the left, opening balance on the right. An account that has entries cannot be deleted, only renamed.</p>${A.map(a=>`<div class="row"><input dir="auto" value="${x(a.n)}" onchange="acSet('${x(a.id)}','n',this.value)"><input type="number" value="${+a.ob||0}" style="max-width:150px" onchange="acSet('${x(a.id)}','ob',this.value)"><button class="m d" onclick="acDel('${x(a.id)}')">X</button></div>`).join('')}<div class="row"><input id="acn" placeholder="New account name (e.g. NSB)"><input id="aco" type="number" placeholder="Opening balance"><button onclick="acAdd()">Add account</button></div></div>`]]:[]),['nsb','NSB',fundUI('nsb')],['fgf','FGF',fundUI('fgf')]],'h')};
+
+// ===== Inventory =====
+const INV=()=>D().inv||(D().inv=[]),ILG=()=>D().ilog||(D().ilog=[]),
+ivVal=z=>(+z.q||0)*(+z.pr||0),ivLow=z=>+z.min>0&&(+z.q||0)<=+z.min,
+ivDt=t=>t?new Date(t).toLocaleDateString('en-CA'):'',
+ivTy={new:'Added',in:'Stock in',out:'Stock out',adj:'Corrected',del:'Deleted'},
+ivRows=()=>{const q=(S.xq||'').toLowerCase().trim();return INV().filter(z=>(!S.xc||z.cat==S.xc)&&(!S.xl||ivLow(z))&&(!q||(z.n+' '+(z.cat||'')+' '+(z.loc||'')).toLowerCase().includes(q))).sort((a,b)=>a.n.localeCompare(b.n))},
+ivLg=(z,ty,q,b,nt,d)=>{const l=ILG();l.push({i:z.id,n:z.n,ty,q,b,d:d||td(),nt:nt||'',by:S.u.e,t:Date.now()});if(l.length>1000)l.splice(0,l.length-1000)},
+ivNew=()=>{S.xe='new';S.xm=null;render();scrollTo(0,0)},
+ivEdit=id=>{S.xe=id;S.xm=null;render();scrollTo(0,0)},
+ivMv=(id,t)=>{S.xm=id;S.xt=t;S.xe=null;render()};
+function ivSave(){const n=v('ivn');if(!n)return toast('Enter the item name');const q=+v('ivq')||0,m=+v('ivm')||0,p=+v('ivp')||0;if(q<0||m<0||p<0)return toast('Numbers cannot be negative');const u=v('ivu')||'pcs',c=v('ivc'),l=v('ivl'),nt=v('ivt'),a=INV();
+if(S.xe=='new'){if(a.some(z=>z.n.toLowerCase()==n.toLowerCase()&&(z.u||'pcs').toLowerCase()==u.toLowerCase()))return toast('This item already exists. Use Stock in to add more.');const z={id:'i'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),n,cat:c,u,q,min:m,pr:p,loc:l,nt,t:Date.now()};a.push(z);ivLg(z,'new',q,q,'Opening stock')}
+else{const z=a.find(z=>z.id==S.xe);if(!z)return;if(a.some(o=>o!==z&&o.n.toLowerCase()==n.toLowerCase()&&(o.u||'pcs').toLowerCase()==u.toLowerCase()))return toast('Another item has the same name');const old=+z.q||0;Object.assign(z,{n,cat:c,u,min:m,pr:p,loc:l,nt,t:Date.now()});if(q!=old){z.q=q;ivLg(z,'adj',q-old,q,'Stock corrected')}}
+S.xe=null;save();render();toast('Saved')}
+function ivGo(){const z=INV().find(z=>z.id==S.xm);if(!z)return;const q=+v('mq'),t=S.xt;if(!(q>0))return toast('Enter a quantity');if(t=='out'&&q>(+z.q||0))return toast('Only '+(+z.q||0)+' in stock');z.q=(+z.q||0)+(t=='in'?q:-q);z.t=Date.now();ivLg(z,t,t=='in'?q:-q,z.q,v('mn'),v('md'));S.xm=null;save();render();toast(t=='in'?'Stock added':'Stock issued')}
+function ivDel(id){if(RC[S.u.r]!='a')return toast('Only the admin can delete items');const a=INV(),i=a.findIndex(z=>z.id==id);if(i<0)return;if(confirm('Delete "'+a[i].n+'"? Its history is kept.')){ivLg(a[i],'del',-(+a[i].q||0),0,'Item deleted');a.splice(i,1);save();render()}}
+function ivDl(name,R){const f=c=>{let t=String(c??'');if(/^[=+\-@]/.test(t)&&isNaN(t))t="'"+t;return'"'+t.replace(/"/g,'""')+'"'},b=new Blob(['\ufeff'+R.map(r=>r.map(f).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name+'-'+td()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function ivCsv(){const a=[...INV()].sort((p,q)=>(p.cat||'').localeCompare(q.cat||'')||p.n.localeCompare(q.n));if(!a.length)return toast('No items to download');const R=[[D().set.name||'School','Inventory stock report','Date: '+td()],[],['No','Item','Category','Unit','In stock','Reorder level','Status','Unit price','Stock value','Location','Last updated','Note']];a.forEach((z,i)=>R.push([i+1,z.n,z.cat||'',z.u||'',+z.q||0,+z.min||0,(+z.q||0)<=0?'Out of stock':ivLow(z)?'Low stock':'OK',+z.pr||0,ivVal(z),z.loc||'',ivDt(z.t),z.nt||'']));R.push([],['','Total items',a.length,'','','','','','Total value: '+a.reduce((s,z)=>s+ivVal(z),0)]);ivDl('inventory-report',R)}
+function ivCsvH(){const l=ILG();if(!l.length)return toast('No history yet');ivDl('inventory-history',[['Date','Item','Type','Quantity','Balance after','Note','By']].concat([...l].reverse().map(z=>[z.d,z.n,ivTy[z.ty]||z.ty,z.q,z.b,z.nt,z.by])))}
+function ivPrint(){const a=[...INV()].sort((p,q)=>(p.cat||'').localeCompare(q.cat||'')||p.n.localeCompare(q.n));if(!a.length)return toast('No items to print');const tv=a.reduce((s,z)=>s+ivVal(z),0),rows=a.map((z,i)=>`<tr><td>${i+1}</td><td dir="auto">${x(z.n)}</td><td dir="auto">${x(z.cat||'')}</td><td>${+z.q||0} ${x(z.u||'')}</td><td>${(+z.q||0)<=0?'Out':ivLow(z)?'Low':'OK'}</td><td>${Rs(z.pr)}</td><td>${Rs(ivVal(z))}</td></tr>`).join('');prn(`<div class="sx">${wm()}${tph()}<div class="ttl">INVENTORY STOCK REPORT</div><div class="gd">${gd('Printed on',td())}${gd('Total items',a.length)}${gd('Low / out of stock',a.filter(z=>ivLow(z)||(+z.q||0)<=0).length)}${gd('Total stock value',Rs(tv))}</div><div style="padding:0 18px"><table class="rt"><tr><th>#</th><th>Item</th><th>Category</th><th>In stock</th><th>Status</th><th>Unit price</th><th>Value</th></tr>${rows}<tfoot><tr><td></td><td>Total</td><td></td><td></td><td></td><td></td><td>${Rs(tv)}</td></tr></tfoot></table></div><div class="sg"><span>Store keeper</span><span>Principal</span></div><div class="ft">Computer generated report · ${x(D().set.name)}</div></div>`)}
+P.inv=()=>{const a=INV(),rows=ivRows(),cats=[...new Set(a.map(z=>z.cat).filter(Boolean))].sort(),val=a.reduce((s,z)=>s+ivVal(z),0),low=a.filter(z=>ivLow(z)||(+z.q||0)<=0).length,adm=RC[S.u.r]=='a',ed=S.xe&&S.xe!='new'?a.find(z=>z.id==S.xe):null,E=ed||{},showF=S.xe=='new'||ed,
+form=showF?`<div class="card"><h3>${ed?'Edit item':'Add item'}</h3><div class="row"><input id="ivn" dir="auto" placeholder="Item name" value="${x(E.n)}"><input id="ivc" list="ivcl" dir="auto" placeholder="Category (Stationery, Furniture...)" value="${x(E.cat)}"><datalist id="ivcl">${cats.map(c=>`<option value="${x(c)}">`).join('')}</datalist></div><div class="row"><input id="ivu" placeholder="Unit (pcs, box, kg)" value="${x(E.u||'')}"><input id="ivq" type="number" min="0" placeholder="${ed?'Quantity in stock':'Opening quantity'}" value="${ed?+E.q||0:''}"><input id="ivm" type="number" min="0" placeholder="Reorder level (alert at or below)" value="${E.min||''}"></div><div class="row"><input id="ivp" type="number" min="0" placeholder="Unit price (Rs)" value="${E.pr||''}"><input id="ivl" dir="auto" placeholder="Location (Store room...)" value="${x(E.loc)}"><input id="ivt" dir="auto" placeholder="Note (optional)" value="${x(E.nt)}"></div><div class="row"><button onclick="ivSave()">Save</button><button class="s" onclick="S.xe=null;render()">Cancel</button></div>${ed?'<small>Changing the quantity here is recorded as a correction. For normal purchases or usage, use Stock in / Stock out.</small>':''}</div>`:'',
+stock=`${form}<div class="g"><div class="card st"><b>${a.length}</b><span>Items</span></div><div class="card st"><b>${Rs(val)}</b><span>Stock value</span></div><div class="card st"><b style="color:var(--${low?'er':'ok'})">${low}</b><span>Low or out of stock</span></div></div><div class="card"><div class="row"><button onclick="ivNew()">+ Add item</button><button class="s m" onclick="ivCsv()">Download report (CSV)</button><button class="s m" onclick="ivPrint()">Print report</button></div><div class="row"><input placeholder="Search item, category, location" value="${x(S.xq||'')}" onchange="S.xq=this.value;render()"><select onchange="S.xc=this.value;render()"><option value="">All categories</option>${cats.map(c=>`<option ${S.xc==c?'selected':''} value="${x(c)}">${x(c)}</option>`).join('')}</select><label><input type="checkbox" ${S.xl?'checked':''} onchange="S.xl=this.checked;render()"> Low stock only</label></div>${list(rows,z=>{const q=+z.q||0,o=q<=0,id=x(z.id);return`<div class="it"><span dir="auto"><b>${x(z.n)}</b> ${o?'<span class="t" style="color:var(--er)">Out</span>':ivLow(z)?'<span class="t" style="color:var(--er)">Low</span>':''}<small>${x(z.cat||'No category')} · ${x(z.loc||'No location')} · ${Rs(z.pr)} per ${x(z.u||'unit')}</small></span><span><b style="color:var(--${o||ivLow(z)?'er':'tx'})">${q.toLocaleString()} ${x(z.u||'')}</b> <button class="s m" onclick="ivMv('${id}','in')">+ In</button> <button class="s m" onclick="ivMv('${id}','out')">− Out</button> <button class="s m" onclick="ivEdit('${id}')">Edit</button>${adm?` <button class="m d" onclick="ivDel('${id}')">✕</button>`:''}</span></div>${S.xm==z.id?`<div class="row" style="padding:8px 4px"><b>${S.xt=='in'?'Stock in':'Stock out'}:</b><input id="mq" type="number" min="1" placeholder="Quantity" style="max-width:130px"><input id="md" type="date" value="${td()}"><input id="mn" dir="auto" placeholder="${S.xt=='in'?'Supplier / note':'Issued to / note'}"><button onclick="ivGo()">Confirm</button><button class="s" onclick="S.xm=null;render()">Cancel</button></div>`:''}`})}</div>`,
+lg=`<div class="card"><h3>Stock history</h3><div class="row"><button class="s m" onclick="ivCsvH()">Download history (CSV)</button></div>${list([...ILG()].reverse().slice(0,80),z=>`<div class="it"><span dir="auto">${x(z.n)} <span class="t">${ivTy[z.ty]||x(z.ty)}</span><small>${x(z.d)}${z.nt?' · '+x(z.nt):''} · ${x(z.by||'')}</small></span><span><b style="color:var(--${z.q<0?'er':'ok'})">${z.q>0?'+':''}${z.q}</b> <small>balance ${z.b}</small></span></div>`)}${ILG().length>80?'<small>Showing the latest 80 entries. Download the CSV for all of them.</small>':''}</div>`;
+return SBT('inv',[['st','Stock',stock],['lg','History',lg]],'h')};
+
 // ===== Funds: NSB & FGF (financial year July-June) =====
-I.fund=I.acc;
+I.fund=I.acc;I.res='<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.7V17c0 .6-.5 1-1 1.2C7.9 18.8 7 20.2 7 22"/><path d="M14 14.7V17c0 .6.5 1 1 1.2 1.1.6 2 2 2 3.8"/><path d="M18 2H6v7a6 6 0 0 0 12 0z"/>';I.inv='<path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7.5L12 12l8.7-4.5M12 22V12"/>';SUB.inv='Stock, purchases, usage and reports';SUB.res='Teacher results, history and yearly archive';
 const FUNDS=[['nsb','NSB','Non-Salary Budget (NSB)'],['fgf','FGF','FGF - فروغِ تعلیم فنڈ']],
 FN=()=>D().fn||(D().fn={}),
 fnD=k=>FN()[k]||{bank:'',iban:'',fy:{}},
@@ -860,7 +921,7 @@ P.fund=()=>SBT('fund',FUNDS.map(f=>[f[0],f[1],fundUI(f[0])]),'h');
 const isInc=s=>myIc().some(z=>z.c==s.c&&(!z.sec||dn(z.sec)==dn(s.sec)));
 function icEdit(){const s=S.ie&&ST().find(z=>z.id==S.ie);if(!s||!isInc(s))return'';return`<div class="mdb" onclick="S.ie=null;S.pp=null;render()"></div><div class="card mdl" style="border-color:var(--pr,#0ea5e9)"><h3>Edit student #${x(s.id)}</h3><p class="hp">Class ${x(s.c)}-${x(s.sec)}. You can move a student between your own classes or sections. Fee and status changes are made by the administrator.</p><div class="row"><input id="ie_n" placeholder="Name" value="${x(s.n||'')}"><input id="ie_f" placeholder="Father name" value="${x(s.f||'')}"></div><div class="row"><input id="ie_dob" type="date" value="${x(s.dob||'')}"><select id="ie_gen"><option>Male</option><option ${s.gen=='Female'?'selected':''}>Female</option></select><input id="ie_ph" inputmode="tel" placeholder="Phone" value="${x(s.ph||'')}"></div><div class="row"><input id="ie_adr" placeholder="Address" value="${x(s.adr||'')}"><input id="ie_bf" placeholder="B-Form / CNIC" value="${x(s.bf||'')}"></div><div class="row"><select id="ie_bg">${['','A+','A-','B+','B-','O+','O-','AB+','AB-'].map(b=>`<option value="${b}" ${s.bg==b?'selected':''}>${b||'Blood group'}</option>`).join('')}</select><input id="ie_em" inputmode="tel" placeholder="Emergency contact" value="${x(s.em||'')}"></div><div class="row"><label class="ch">Class and section <select id="ie_cs">${icOpts().map(q=>`<option value="${x(q[0])}|${x(q[1])}" ${q[0]==s.c&&dn(q[1])==dn(s.sec)?'selected':''}>Class ${x(q[0])}-${x(q[1])}</option>`).join('')}</select></label></div><div class="row"><label class="ch">Photo <input type="file" accept="image/*" onchange="photoTmp(this,'iepv')"></label><img id="iepv" class="ppv" src="${x(S.pp||s.pic||'')}" style="${S.pp||s.pic?'':'display:none'}"></div><div class="row"><button onclick="icSave()">Save changes</button><button class="s" onclick="S.ie=null;S.pp=null;render()">Cancel</button>${s.by&&s.by==S.u.e?`<button class="s" onclick="delSt('${s.id}')">Delete entry</button>`:''}</div></div>`}
 function icSave(){const s=ST().find(z=>z.id==S.ie);if(!s||!isInc(s))return toast('You can edit only students of your own class');const n=v('ie_n').trim();if(!n)return toast('Name required');const ph=v('ie_ph').replace(/\D/g,'');if(ph&&ph.length<10)return toast('Enter a valid phone (10+ digits)');const cs=(v('ie_cs')||'').split('|');let nc=s.c,ns=s.sec;if(cs[0]&&icOpts().some(q=>q[0]==cs[0]&&dn(q[1])==dn(cs[1]||''))){nc=cs[0];ns=cs[1]||''}const dp=dupOf(n,v('ie_f'),v('ie_bf'),nc,s.id);if(dp&&dupAsk(dp,v('ie_bf')))return;Object.assign(s,{c:nc,sec:ns,n,f:v('ie_f'),ph,dob:v('ie_dob'),gen:v('ie_gen'),adr:v('ie_adr'),bf:v('ie_bf'),bg:v('ie_bg'),em:v('ie_em').replace(/\D/g,''),...(S.pp?{pic:S.pp}:{})});S.ie=null;S.pp=null;save();render();toast('Student updated')}
-P.stl=()=>icEdit()+P.st0();
+P.stl=()=>icEdit()+stExpUI()+P.st0();
 P.st=()=>{const T=stTabs();if(!T.length)return'<div class="card"><div class="em"><p>No student modules are available for your login.</p></div></div>';S.sb=S.sb||{};const c=T.some(t=>t[0]==S.sb.st)?S.sb.st:T[0][0];return SBT('st',T.map(t=>[t[0],t[1],t[0]==c?t[4]():'']),'h')};
 
 // ===== Signature / emblem uploads =====
@@ -879,7 +940,50 @@ const DZ=[['id','ID card',[['1','Classic (current)','Curved header with wave'],[
 dzCur=k=>{const r=((D().set||{}).dz||{})[k]||'1';return k=='id'&&r=='5'?'1':r};
 function dzApply(){const z=(S.sid&&DB.data[S.sid]&&DB.data[S.sid].set&&DB.data[S.sid].set.dz)||{},h=document.documentElement;['id','cf','rc','vc'].forEach(k=>h.setAttribute('data-dz'+k,z[k]||'1'))}
 function dzSet(k,v){const t=D().set;t.dz=Object.assign({},t.dz||{},{[k]:v});save();dzApply();render();toast('Design updated')}
-function dzUI(){return`<div class="card"><h3>Print designs</h3><p class="hp">Choose a layout for each document. Colours below apply to every layout. Open the ID cards, Certificates, Result card or Fee voucher page to see your choice with real data.</p>${DZ.map(g=>`<div style="margin:10px 0 4px;font-weight:700">${g[1]}</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">${g[2].map(o=>{const on=dzCur(g[0])==o[0];return`<button type="button" onclick="dzSet('${g[0]}','${o[0]}')" style="all:unset;cursor:pointer;display:block;padding:10px;border-radius:10px;border:2px solid ${on?'var(--pr)':'var(--bd)'};background:var(--cd)"><b style="font-size:13px">${on?'✓ ':''}${o[1]}</b><small style="display:block;color:var(--mu)">${o[2]}</small></button>`}).join('')}</div>`).join('')}</div>`}
+
+// ===== Live sample previews for print designs =====
+const DZQR='<div class="qr"><svg viewBox="0 0 21 21" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0zM9 1h2v2H9zM9 5h3v1H9zM8 9h2v2H8zM12 9h3v2h-3zM16 9h2v2h-2zM9 13h2v3H9zM13 14h3v2h-3zM17 16h4v2h-4zM12 18h2v3h-2zM16 20h5v1h-5zM1 1h5v5H1zM15 1h5v5h-5zM1 15h5v5H1z" fill-rule="evenodd"/></svg></div>';
+function dzRc(){const d=D(),sid='999999',t='__dzp',sb=subs(),c=CL.find(z=>!ST().some(q=>q.c==z&&q.s=='Active'))||CL[0];d.st.push({id:sid,n:'STUDENT NAME',f:'Father Name',c,sec:'A',s:'Active',fee:0,d:td()});sb.forEach((j,k)=>{d.mk[t+'|'+sid+'|'+j]=88-k*4});try{return rcH(sid,t)}finally{d.st.pop();sb.forEach(j=>delete d.mk[t+'|'+sid+'|'+j])}}
+function dzPvParts(k,dz){
+const smp={id:'1',n:'STUDENT NAME',f:'Father Name',c:'5',sec:'A',dob:'2015-01-01',s:'Active',fee:1500,d:td()};
+if(k=='id'){let f=idF(smp);if(f.indexOf('class="qr"')<0)f=f.replace(/<\/div>$/,DZQR+'</div>');const b=idB(smp),ls=dz=='4'||dz=='9';return{w:ls?108:100,cards:[f,b],stack:false,nat:0}}
+if(k=='cf'){const st=D().set;return{w:210,nat:720,cards:[`<div class="sx cf">${wm()}${tph()}<div class="cft">CHARACTER CERTIFICATE</div><p class="cfp">This is to certify that</p><div class="cfn">STUDENT NAME</div><p class="cfp">S/O Father Name (Adm# 000001) bears a good moral character and conduct during stay at this school.</p><div class="sg"><span>Date: ${td()}</span><span>Principal</span></div><div class="ft">Computer generated certificate · ${x(st.name)}</div></div>`]}}
+if(k=='rc')return{w:150,nat:720,cards:[dzRc()]};
+if(k=='vc')return{w:170,nat:420,cards:[fv({...smp,id:'1'},MO)]};
+return null}
+class DzPv extends HTMLElement{connectedCallback(){if(this.shadowRoot)return;let P;try{P=dzPvParts(this.getAttribute('k'),this.getAttribute('d'))}catch(e){console.log('preview',e);return}if(!P)return;const r=this.attachShadow({mode:'open'}),dz=this.getAttribute('d'),k=this.getAttribute('k'),st=`--ac:${x(ac())};${pcv()}`;window.DZCSS=window.DZCSS||[...document.querySelectorAll('style')].map(z=>z.textContent).join('\n');r.innerHTML='<style>'+window.DZCSS+'</style><style>:host{display:block}.dzb{display:flex;gap:6px;align-items:flex-start}.dzc{overflow:hidden;position:relative;border-radius:4px;box-shadow:0 0 0 1px rgba(100,116,139,.35),0 1px 4px rgba(0,0,0,.18);background:#fff;flex:none}.dzc>.pw{transform-origin:0 0;display:inline-block;margin:0}</style><div class="dzb">'+P.cards.map(h=>`<div class="dzc"><div class="pw" data-dz${k}="${x(dz)}" style="${st}${P.nat?';width:'+P.nat+'px':''}">${h}</div></div>`).join('')+'</div>';r.querySelectorAll('.dzc').forEach(c=>{const w=c.firstElementChild,nw=w.offsetWidth,nh=w.offsetHeight;if(!nw)return;const q=P.w/nw;w.style.transform='scale('+q+')';c.style.width=P.w+'px';c.style.height=Math.ceil(nh*q)+'px'})}}
+try{if(!customElements.get('dz-pv'))customElements.define('dz-pv',DzPv)}catch(e){}
+
+
+// ===== Students list export =====
+function stExpList(){const sc=v('xs'),c=v('xc'),se=v('xe');let L=ST().filter(z=>z.s=='Active'&&inA(z));if(sc!='all')L=L.filter(z=>z.c==c);if(sc=='sec')L=L.filter(z=>dn(z.sec)==dn(se));L.sort((a,b)=>CL.indexOf(a.c)-CL.indexOf(b.c)||String(a.sec).localeCompare(String(b.sec))||String(a.n).localeCompare(String(b.n)));return{L,f:sc=='all'?'All School':sc=='cls'?'Class '+c:'Class '+c+' - Section '+se}}
+function stExpUI(){const t=!!asg();return`<details class="card"><summary><b>Download students list</b></summary><div class="row" style="margin-top:8px"><select id="xs">${t?'':'<option value="all">All school</option>'}<option value="cls">Class-wise</option><option value="sec">Class + section</option></select><select id="xc">${CLS().map(c=>`<option>${x(c)}</option>`).join('')}</select><select id="xe">${secsOf().map(c=>`<option>${x(c)}</option>`).join('')}</select></div><div class="row"><button onclick="stCsv()">Excel / CSV</button><button class="s" onclick="stPdf()">A4 Print / PDF</button></div><p class="hp">${t?'Limited to your assigned class and section.':'Active students only.'}</p></details>`}
+function stCsv(){const{L,f}=stExpList();if(!L.length)return toast('No students in this selection');const q=t=>'"'+String(t==null?'':t).replace(/"/g,'""')+'"',R=[['Adm No','Name','Father name','Class','Section','Date of birth','Gender','Phone','B-Form','Address','Status']].concat(L.map(z=>[pad(z.id),z.n,z.f,z.c,z.sec,z.dob,z.g,z.ph,z.bf,z.ad||z.addr,z.s])),b=new Blob(['\ufeff'+R.map(r=>r.map(q).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='students-'+f.replace(/\W+/g,'-')+'-'+td()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function stPdf(){const{L,f}=stExpList();if(!L.length)return toast('No students in this selection');const st=D().set;prn(`<div class="sx" style="max-width:none"><h2 style="text-align:center;margin:0">${x(st.name||'')}</h2><p style="text-align:center;margin:2px 0">${x(st.addr||'')}</p><h3 style="text-align:center;margin:6px 0">Students List - ${x(f)}</h3><p style="font-size:12px">Session ${x(ses())} · Total students: <b>${L.length}</b> · Printed ${td()}</p><table class="rt"><tr><th>#</th><th>Adm No</th><th>Name</th><th>Father name</th><th>Class</th><th>Sec</th><th>Phone</th></tr>${L.map((z,i)=>`<tr><td>${i+1}</td><td>${pad(z.id)}</td><td>${x(z.n)}</td><td>${x(z.f)}</td><td>${x(z.c)}</td><td>${x(z.sec)}</td><td>${x(z.ph||'')}</td></tr>`).join('')}</table></div>`)}
+
+// ===== Teacher results, history, evaluation, archive =====
+const RES_CL=['8th','9th','10th','1st Year','2nd Year'];
+const RR=()=>{const d=D();d.res=d.res||{};['arc','docs','ev','rem'].forEach(k=>d.res[k]=d.res[k]||[]);d.res.snap=d.res.snap||{};d.res.cfg=d.res.cfg||{max:100,pass:33};return d.res};
+const isAd=()=>RC[S.u.r]=='a',tNm=e=>(DB.users.find(u=>u.e==e)||{}).n||e,rExs=()=>[...new Set(Object.keys(D().mk||{}).map(k=>k.split('|')[0]))].filter(Boolean);
+const rAs=()=>{const o=[],tm=D().tm||{};for(const e in tm)(tm[e]||[]).forEach(z=>{if(isAd()||e==S.u.e)o.push({e,c:z.c,sec:z.sec||'',sub:z.sub})});return o};
+function rSt(a,t){const g=RR().cfg,v=[];ST().filter(z=>z.s=='Active'&&z.c==a.c&&(!a.sec||dn(z.sec)==dn(a.sec))).forEach(z=>{const m=D().mk[t+'|'+z.id+'|'+a.sub];if(m!==undefined&&m!==''&&!isNaN(+m))v.push(+m)});const n=v.length,p=v.filter(m=>m>=g.pass/100*g.max).length;return{n,p,pp:n?p/n*100:0,avg:n?v.reduce((q,w)=>q+w,0)/n/g.max*100:0,hi:n?Math.max(...v):0,ap:v.filter(m=>m>=.9*g.max).length}}
+const rRows=t=>rAs().map(a=>({...a,tn:tNm(a.e),...rSt(a,t)}));
+const rTbl=r=>`<div style="overflow:auto"><table class="rt"><tr><th>Teacher</th><th>Class</th><th>Subject</th><th>Appeared</th><th>Passed</th><th>Pass %</th><th>Avg %</th><th>Highest</th><th>A+</th></tr>${r.map(z=>`<tr><td>${x(z.tn)}</td><td>${x(z.c)}${z.sec?'-'+x(z.sec):''}</td><td>${x(z.sub)}</td><td>${z.n}</td><td>${z.p}</td><td>${z.pp.toFixed(1)}</td><td>${z.avg.toFixed(1)}</td><td>${z.hi}</td><td>${z.ap}</td></tr>`).join('')||'<tr><td colspan="9">No assignments or marks yet</td></tr>'}</table></div>`;
+function rCur(){const ex=rExs(),t=ex.includes(S.rx)?S.rx:ex[0]||'',sn=RR().snap[ses()+'|'+t];return{ex,t,sn,rows:sn?sn.rows.filter(r=>isAd()||r.e==S.u.e):rRows(t)}}
+function rTW(){const{ex,t,sn,rows}=rCur(),g=RR().cfg;return`<div class="card"><h3>Teacher-wise result</h3><div class="row"><select onchange="S.rx=this.value;render()">${ex.map(e=>`<option ${e==t?'selected':''}>${x(e)}</option>`).join('')||'<option>No exams yet</option>'}</select><button onclick="rPrint()">Print A4 / PDF</button>${isAd()?`<button class="s" onclick="rLock()">Lock for ${x(ses())}</button>`:''}</div>${isAd()?`<div class="row"><label class="ch">Total marks <input id="rmx" type="number" value="${g.max}"></label><label class="ch">Pass % <input id="rps" type="number" value="${g.pass}"></label><button class="s" onclick="RR().cfg={max:+v('rmx')||100,pass:+v('rps')||33};save();render()">Save</button></div>`:''}<p class="hp">${sn?'Locked on '+sn.at+' for session '+x(ses())+': teacher names and results are fixed history.':'Live: recalculates whenever marks change.'} Pass mark ${g.pass}% of ${g.max}; A+ is 90% or more.</p>${rTbl(rows)}</div>`}
+function rPrint(){const{t,rows}=rCur();prn(`<div class="sx">${wm()}${tph()}<div class="ttl">TEACHER-WISE RESULT SUMMARY</div><div class="gd">${gd('Exam',t)}${gd('Session',ses())}${gd('Printed on',td())}</div><div style="padding:0 18px">${rTbl(rows)}</div></div>`)}
+function rLock(){const{t}=rCur();if(!t)return;const k=ses()+'|'+t;if(RR().snap[k]&&!confirm('Replace the locked result for '+k+'?'))return;if(!confirm('Lock '+t+' results of '+ses()+' with current teacher assignments?'))return;RR().snap[k]={at:td(),rows:rRows(t)};save();render();toast('Locked')}
+function rHist(){const R=RR(),ad=isAd(),tl=[...new Set(Object.values(R.snap).flatMap(z=>z.rows.map(r=>r.e)).concat(Object.keys(D().tm||{})))],e=ad?(tl.includes(S.rh)?S.rh:tl[0]):S.u.e,yr=Object.entries(R.snap).map(([k,z])=>{const rr=z.rows.filter(r=>r.e==e),n=rr.reduce((a,r)=>a+r.n,0),p=rr.reduce((a,r)=>a+r.p,0);return{k,n,p,av:rr.length?rr.reduce((a,r)=>a+r.avg,0)/rr.length:0,cl:[...new Set(rr.map(r=>r.c+(r.sec?'-'+r.sec:'')+' '+r.sub))].join(', ')}}).filter(r=>r.n).sort((a,b)=>a.k.localeCompare(b.k)),ev=R.ev.filter(z=>z.e==e),cr=['Punctuality','Results','Discipline','Teamwork'];
+return`<div class="card"><h3>Teacher history & evaluation</h3>${ad?`<div class="row"><select onchange="S.rh=this.value;render()">${tl.map(z=>`<option value="${x(z)}" ${z==e?'selected':''}>${x(tNm(z))}</option>`).join('')}</select></div>`:`<p class="hp">${x(tNm(e))}: your assigned classes: ${x((D().tm||{})[e]?D().tm[e].map(z=>z.c+(z.sec?'-'+z.sec:'')+' '+z.sub).join(', '):'none')}</p>`}<table class="rt"><tr><th>Session / exam</th><th>Classes & subjects</th><th>Appeared</th><th>Pass %</th><th>Avg %</th></tr>${yr.map(r=>`<tr><td>${x(r.k)}</td><td>${x(r.cl)}</td><td>${r.n}</td><td>${(r.p/r.n*100).toFixed(1)}</td><td>${r.av.toFixed(1)}</td></tr>`).join('')||'<tr><td colspan="5">No locked results yet (admin locks them in Teacher results)</td></tr>'}</table></div><div class="card"><h3>Evaluation</h3>${ev.map(z=>`<p class="hp"><b>${x(z.ses)}</b> · ${cr.map((c,i)=>c+' '+z.r[i]+'/5').join(' · ')}<br>${x(z.txt||'')}</p>`).join('')||'<p class="hp">No evaluation yet.</p>'}${ad&&e?`<div class="row">${cr.map((c,i)=>`<label class="ch">${c} <select id="ev${i}">${[5,4,3,2,1].map(n=>`<option>${n}</option>`).join('')}</select></label>`).join('')}</div><div class="row"><input id="evt" placeholder="Comment"><button onclick="R2().ev.push({e:'${x(e)}',ses:ses(),r:[0,1,2,3].map(i=>+v('ev'+i)),txt:v('evt'),at:td(),by:S.u.e});save();render()">Save evaluation</button></div>`:''}</div>`}
+const R2=RR;
+function rStu(){const cs=CLS(),c=cs.includes(S.rc)?S.rc:cs[0],L=ST().filter(z=>z.s=='Active'&&z.c==c&&inA(z)),sd=L.find(z=>z.id==S.rs)||L[0];if(!sd)return'<div class="card"><p class="hp">No students.</p></div>';const g=RR().cfg,sb=subs(),pr=rExs().map(t=>{const m=sb.map(j=>D().mk[t+'|'+sd.id+'|'+j]).filter(q=>q!==undefined&&q!==''&&!isNaN(+q));return{t,p:m.length?m.reduce((a,q)=>a+ +q,0)/(sb.length*g.max)*100:null}}).filter(r=>r.p!=null),rm=RR().rem.filter(z=>z.sid==sd.id);return`<div class="card"><h3>Student progress & remarks</h3><div class="row"><select onchange="S.rc=this.value;S.rs=null;render()">${cs.map(z=>`<option ${z==c?'selected':''}>${x(z)}</option>`).join('')}</select><select onchange="S.rs=this.value;render()">${L.map(z=>`<option value="${z.id}" ${z.id==sd.id?'selected':''}>${x(z.n)} (${pad(z.id)})</option>`).join('')}</select></div><table class="rt"><tr><th>Exam / term</th><th>%</th><th></th></tr>${pr.map(r=>`<tr><td>${x(r.t)}</td><td>${r.p.toFixed(1)}</td><td style="width:50%"><div class="rbar" style="width:${Math.min(100,r.p)}%"></div></td></tr>`).join('')||'<tr><td colspan="3">No marks yet</td></tr>'}</table><h4>Remarks</h4>${rm.map(z=>`<p class="hp"><b>${x(z.ses)}</b> · ${z.at} · ${x(tNm(z.by))}: ${x(z.txt)}</p>`).join('')||'<p class="hp">No remarks yet.</p>'}<div class="row"><input id="rmt" placeholder="Add remark / comment"><button onclick="if(v('rmt').trim()){RR().rem.push({sid:'${sd.id}',by:S.u.e,at:td(),ses:ses(),txt:v('rmt').trim()});save();render()}">Add</button></div></div>`}
+function rArc(){const R=RR(),ad=isAd(),D2=R.docs.slice().reverse();return`<div class="card"><h3>Board & School Archive</h3><table class="rt"><tr><th>Year</th><th>Class</th><th>Appeared</th><th>Passed</th><th>Pass %</th><th>Top achievers / positions</th>${ad?'<th></th>':''}</tr>${R.arc.slice().sort((a,b)=>String(b.y).localeCompare(a.y)).map(z=>`<tr><td>${x(z.y)}</td><td>${x(z.c)}</td><td>${z.a}</td><td>${z.p}</td><td>${z.a?(z.p/z.a*100).toFixed(1):'-'}</td><td>${x(z.top||'')}</td>${ad?`<td><button class="m s" onclick="if(confirm('Delete?')){RR().arc=RR().arc.filter(q=>q.id!='${z.id}');save();render()}">x</button></td>`:''}</tr>`).join('')||'<tr><td colspan="7">Nothing archived yet</td></tr>'}</table>${ad?`<div class="row"><select id="ar_c">${RES_CL.map(c=>`<option>${c}</option>`).join('')}</select><input id="ar_y" placeholder="Year e.g. 2025" value="${x(S.ay||'')}" oninput="S.ay=this.value"><input id="ar_a" type="number" placeholder="Appeared"><input id="ar_p" type="number" placeholder="Passed"></div><div class="row"><input id="ar_top" placeholder="Top achievers / positions"><button onclick="rArcSave()">Save year result</button></div>`:''}</div><div class="card"><h3>Gazettes, result cards & images (Google Drive)</h3>${ad?`<div class="row"><select id="ar_t"><option>Result Gazette (PDF)</option><option>Student Result Card</option><option>Image</option></select><input id="ar_s" placeholder="Student Adm No (optional)"><input type="file" accept="application/pdf,image/*" onchange="rUp(this)"></div><p class="hp">Uses the class and year selected above. Files are stored in your Google Drive; the link is saved with the school data.</p>`:''}<table class="rt"><tr><th>Year</th><th>Class</th><th>Type</th><th>File</th><th>Student</th><th></th></tr>${D2.map(z=>`<tr><td>${x(z.y)}</td><td>${x(z.c)}</td><td>${x(z.ty)}</td><td>${x(z.nm)}</td><td>${x(z.sid||'')}</td><td><a href="${x(z.vw)}" target="_blank" rel="noopener">View</a> · <a href="${x(z.dl)}" target="_blank" rel="noopener">Download</a>${ad?` · <a href="#" onclick="if(confirm('Remove this link? The file stays in Drive.')){RR().docs=RR().docs.filter(q=>q.id!='${z.id}');save();render()}return false">Remove</a>`:''}</td></tr>`).join('')||'<tr><td colspan="6">No documents attached</td></tr>'}</table></div>`}
+function rArcSave(){const y=v('ar_y').trim(),c=v('ar_c'),a=+v('ar_a'),pp=+v('ar_p');if(!y||!a||pp>a)return toast('Enter year, appeared and passed (passed cannot exceed appeared)');const R=RR();R.arc=R.arc.filter(z=>!(z.y==y&&z.c==c));R.arc.push({id:Date.now()+'',y,c,a,p:pp,top:v('ar_top')});save();render()}
+async function rUp(inp){const f=inp.files[0];if(!f)return;if(!v('ar_y').trim())return toast('Enter the year first'),inp.value='';try{const t=await gTok(),b='bd'+Date.now(),ty=f.type||'application/octet-stream',pre='--'+b+'\r\nContent-Type: application/json\r\n\r\n'+JSON.stringify({name:'school-erp-doc-'+v('ar_y')+'-'+f.name,mimeType:ty})+'\r\n--'+b+'\r\nContent-Type: '+ty+'\r\n\r\n',r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,webViewLink,webContentLink',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'multipart/related; boundary='+b},body:new Blob([pre,f,'\r\n--'+b+'--'])});if(!r.ok)throw'Drive upload failed ('+r.status+')';const j=await r.json();RR().docs.push({id:Date.now()+'',fid:j.id,nm:f.name,ty:v('ar_t'),y:v('ar_y').trim(),c:v('ar_c'),sid:v('ar_s').trim(),vw:j.webViewLink,dl:j.webContentLink||'https://drive.google.com/uc?export=download&id='+j.id,at:td()});save();render();toast('Saved to Google Drive')}catch(e){toast(typeof e=='string'?e:'Upload failed')}inp.value=''}
+function rTrend(){const R=RR(),ys=[...new Set(R.arc.map(z=>z.y))].sort(),pc=(y,c)=>{const z=R.arc.find(q=>q.y==y&&q.c==c);return z&&z.a?z.p/z.a*100:null},sn=Object.entries(R.snap).map(([k,z])=>{const n=z.rows.reduce((a,r)=>a+r.n,0),p=z.rows.reduce((a,r)=>a+r.p,0);return{k,pp:n?p/n*100:0}}).sort((a,b)=>a.k.localeCompare(b.k));return`<div class="card"><h3>School-wise year-over-year pass %</h3><table class="rt"><tr><th>Year</th>${RES_CL.map(c=>`<th>${c}</th>`).join('')}</tr>${ys.map(y=>`<tr><td>${x(y)}</td>${RES_CL.map(c=>{const q=pc(y,c);return`<td>${q==null?'-':q.toFixed(1)}</td>`}).join('')}</tr>`).join('')||'<tr><td colspan="6">Add yearly results in the Archive tab</td></tr>'}</table></div><div class="card"><h3>Teacher-wise performance by session</h3>${sn.map(r=>`<p class="hp">${x(r.k)}: ${r.pp.toFixed(1)}%</p><div class="rbar" style="width:${r.pp}%"></div>`).join('')||'<p class="hp">Lock results to build teacher history.</p>'}</div>`}
+P.res=()=>SBT('res',[['tw','Teacher results',rTW()],['hist','History & evaluation',rHist()],['rem','Student progress',rStu()],['arc','Board & School Archive',rArc()],['tr','Year-over-year',rTrend()]],'h');
+
+function dzUI(){return`<div class="card"><h3>Print designs</h3><p class="hp">Tap a layout to use it. Each box shows a sample in your current colours; the colours below apply to every layout.</p>${DZ.map(g=>`<div style="margin:10px 0 4px;font-weight:700">${g[1]}</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(${g[0]=='id'?250:g[0]=='cf'?240:200}px,1fr));gap:8px;align-items:start">${g[2].map(o=>{const on=dzCur(g[0])==o[0];return`<button type="button" onclick="dzSet('${g[0]}','${o[0]}')" style="all:unset;cursor:pointer;display:block;padding:10px;border-radius:10px;border:2px solid ${on?'var(--pr)':'var(--bd)'};background:var(--cd)"><dz-pv k="${g[0]}" d="${o[0]}" style="margin-bottom:8px"></dz-pv><b style="font-size:13px">${on?'✓ ':''}${o[1]}</b><small style="display:block;color:var(--mu)">${o[2]}</small></button>`}).join('')}</div>`).join('')}</div>`}
 // ===== Print colour themes (ID cards, certificates, result cards, vouchers) =====
 const PCT=[['Current: deep blue & amber','#1e3a8a',''],['Emerald & gold','#065f46','#d4a017'],['Maroon & gold','#7f1d1d','#e0b04c'],['Navy & sky blue','#0f2a5c','#38bdf8'],['Teal & gold','#0f766e','#e6b422'],['Royal purple & gold','#4c1d95','#f5b83d'],['Charcoal & orange','#1f2937','#f97316'],['Crimson & silver','#9f1239','#94a3b8'],['Forest & lime','#14532d','#84cc16'],['Ocean blue & coral','#0c4a6e','#f4846b'],['Chocolate & gold','#4a2c17','#d9a441'],['Slate & teal','#334155','#14b8a6']],
 hexOk=c=>/^#[0-9a-f]{6}$/i.test(c||''),
@@ -946,8 +1050,8 @@ function cert(){const s=ST().find(z=>z.id==v('cs')),t=v('ct');if(!s)return;const
 P.rep0=()=>{const d=D(),a=ST().filter(s=>s.s=='Active'),col=d.fee.filter(f=>f.m==MO).reduce((z,f)=>z+f.a,0),att=d.att[td()]||{},pr=Object.values(att).filter(Boolean).length,n=Object.values(att).length;
 return`<div class="card"><h3>Fees (${MO})</h3>Collected ${Rs(col)} · Pending students ${a.filter(s=>!fs(s.id,MO)).length}</div><div class="card"><h3>Attendance today</h3>${n?Math.round(pr/n*100)+'% present ('+pr+'/'+n+')':'Not marked yet'}</div><div class="card"><h3>Fee status by class (${MO})</h3>${CL.map(c=>{const a=ST().filter(s=>s.c==c&&s.s=='Active');if(!a.length)return'';const pd=a.filter(s=>{const q=fs(s.id,MO);return q&&q.t=='p'}).length;return`<div class="it">Class ${c}<span>${pd} paid · ${a.length-pd} pending</span></div>`}).join('')||'<p class="hp">No students</p>'}</div><div class="card"><h3>Income and expense (${MO})</h3>${(()=>{const l=d.led.filter(z=>z.d.slice(0,7)==MO),i=l.filter(z=>z.t=='i').reduce((q,z)=>q+z.a,0),e=l.filter(z=>z.t=='e').reduce((q,z)=>q+z.a,0);return`<div class="it">Income<b>${Rs(i)}</b></div><div class="it">Expense<b>${Rs(e)}</b></div><div class="it">${i>=e?'Profit':'Loss'}<b>${Rs(Math.abs(i-e))}</b></div>`})()}</div><div class="card"><h3>Class strength</h3>${CL.map(c=>[c,a.filter(s=>s.c==c).length]).filter(z=>z[1]).map(z=>`<div class="it">Class ${z[0]}<b>${z[1]}</b></div>`).join('')||'No students'}</div>`};
 const SBT=(k,it,m)=>{S.sb=S.sb||{};let c=S.sb[k];if(!it.some(z=>z[0]==c))c=it[0][0];return`<div class="sl ${m=='h'?'h':''}"><nav class="stb">${it.map(z=>`<button class="${z[0]==c?'on':''}" onclick="(S.sb=S.sb||{}).${k}='${z[0]}';render();scrollTo(0,0)">${z[1]}</button>`).join('')}</nav><div class="sc">${it.find(z=>z[0]==c)[2]}</div></div>`};
-P.set=()=>{const s=D().set;return SBT('set',[['sc','School profile',`<div class="card"><h3>School profile</h3><div class="row"><input id="sname" value="${x(s.name)}"><input id="sadr" placeholder="Address" value="${x(s.addr)}"></div><div class="row"><input id="stel" value="${x(s.tel||'')}" placeholder="School phone"><label class="ch">Theme color <input id="scol" type="color" value="${x(s.col||'#1e3a8a')}"></label></div><div class="row"><input id="ssub" value="${x(s.sub)}" placeholder="Subjects, comma separated"><input id="scc" value="${x(s.cc||'92')}" placeholder="Country code (92)"><input type="file" accept="image/*" onchange="logo(this)"></div><button onclick="Object.assign(D().set,{name:v('sname')||D().set.name,addr:v('sadr'),sub:v('ssub')||D().set.sub,cc:v('scc').replace(/\D/g,'')||'92',tel:v('stel'),col:v('scol')});save();render()">Save</button></div>`],['cs','Classes & sections',clsCard()],['us','Users & access',`<div class="card"><h3>Sub-users</h3><p class="hp">Logins can only be created for people in the staff list. Add the person in Staff &amp; Payroll first.</p>${freeSf().length?`<div class="row"><select id="usf" onchange="if(!$('ue').value)$('ue').value=nn(this.selectedOptions[0].dataset.n).replace(/ /g,'.')">${freeSf().map(f=>`<option value="${f.id}" data-n="${x(f.n)}" ${S.usf0==f.id?'selected':''}>${x(f.n)}${f.r?' · '+x(f.r):''}</option>`).join('')}</select><input id="ue" placeholder="Username" autocapitalize="none"><input id="up" placeholder="Password"><select id="ur"><option value="teacher">Teacher</option><option value="accountant">Accountant</option><option value="staff">Staff</option></select><button onclick="adU()">Create login</button></div>`:`<div class="row"><span class="hp">${(D().sf||[]).length?'Every staff member already has a login.':'The staff list is empty.'}</span><button class="s" onclick="go('sf')">Open Staff &amp; Payroll</button></div>`}${DB.users.filter(u=>u.sid==S.sid).map(u=>usRow(u)).join('')}</div>`],['po','Staff posts',`${spCfg()}`],['sj','Subjects',sjTab()],['im','Import students',`<div class="card"><h3>Import students</h3><p class="hp">Upload an Excel or CSV list of students. You will see a preview and can match the columns before anything is saved.</p></div>${impUI()}`],['pc','Print designs & colours',pcTab()],['ic','ID cards',idTab()],['bk','Backup & storage',`<div class="card"><h3>Backup</h3><div class="row"><button onclick="bk()">Download backup</button><input type="file" accept=".json" onchange="rs(this)"></div>${okF('drv')?`<div class="row"><button class="s" onclick="gdBackup()">Back up to Google Drive</button><button class="s" onclick="gdList()">Restore from Drive</button></div>${(S.gd||[]).map(f=>`<div class="it"><span>${x(f.name)}<small>${x(f.createdTime.slice(0,10))}</small></span><button class="m" onclick="gdRestore('${x(f.id)}')">Restore</button></div>`).join('')}`:'<p class="hp">Google Drive backup is not included in your plan.</p>'}<small>Cloud sync: ${FB&&FB.ok?'on':'off'}</small></div>${stUse()}`]],'v')};
-function logo(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,200/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);D().set.logo=c.toDataURL('image/png');save();render()};im.onerror=()=>toast('Not a valid image');im.src=r.result};r.readAsDataURL(f)}
+P.set=()=>{const s=D().set;return SBT('set',[['sc','School profile',`<div class="card"><h3>School profile</h3><div class="row"><input id="sname" value="${x(s.name)}"><input id="sadr" placeholder="Address" value="${x(s.addr)}"></div><div class="row"><input id="stel" value="${x(s.tel||'')}" placeholder="School phone"><label class="ch">Theme color <input id="scol" type="color" value="${x(s.col||'#1e3a8a')}"></label></div><div class="row"><input id="ssub" value="${x(s.sub)}" placeholder="Subjects, comma separated"><input id="scc" value="${x(s.cc||'92')}" placeholder="Country code (92)"><input type="file" accept="image/*" onchange="logo(this)"><select title="Logo shape" onchange="D().set.lgs=this.value;save();render()"><option value="">Logo: original shape</option><option value="round"${s.lgs=='round'?' selected':''}>Logo: round / oval</option></select></div><button onclick="Object.assign(D().set,{name:v('sname')||D().set.name,addr:v('sadr'),sub:v('ssub')||D().set.sub,cc:v('scc').replace(/\D/g,'')||'92',tel:v('stel'),col:v('scol')});save();render()">Save</button></div>`],['cs','Classes & sections',clsCard()],['us','Users & access',`<div class="card"><h3>Sub-users</h3><p class="hp">Logins can only be created for people in the staff list. Add the person in Staff &amp; Payroll first.</p>${freeSf().length?`<div class="row"><select id="usf" onchange="if(!$('ue').value)$('ue').value=nn(this.selectedOptions[0].dataset.n).replace(/ /g,'.')">${freeSf().map(f=>`<option value="${f.id}" data-n="${x(f.n)}" ${S.usf0==f.id?'selected':''}>${x(f.n)}${f.r?' · '+x(f.r):''}</option>`).join('')}</select><input id="ue" placeholder="Username" autocapitalize="none"><input id="up" placeholder="Password"><select id="ur"><option value="teacher">Teacher</option><option value="accountant">Accountant</option><option value="staff">Staff</option></select><button onclick="adU()">Create login</button></div>`:`<div class="row"><span class="hp">${(D().sf||[]).length?'Every staff member already has a login.':'The staff list is empty.'}</span><button class="s" onclick="go('sf')">Open Staff &amp; Payroll</button></div>`}${DB.users.filter(u=>u.sid==S.sid).map(u=>usRow(u)).join('')}</div>`],['po','Staff posts',`${spCfg()}`],['sj','Subjects',sjTab()],['im','Import students',`<div class="card"><h3>Import students</h3><p class="hp">Upload an Excel or CSV list of students. You will see a preview and can match the columns before anything is saved.</p></div>${impUI()}`],['pc','Print designs & colours',pcTab()],['ic','ID cards',idTab()],['bk','Backup & storage',`<div class="card"><h3>Backup</h3><div class="row"><button onclick="bk()">Download backup</button><input type="file" accept=".json" onchange="rs(this)"></div>${okF('drv')?`<div class="row"><button class="s" onclick="gdBackup()">Back up to Google Drive</button><button class="s" onclick="gdList()">Restore from Drive</button></div>${(S.gd||[]).map(f=>`<div class="it"><span>${x(f.name)}<small>${x(f.createdTime.slice(0,10))}</small></span><button class="m" onclick="gdRestore('${x(f.id)}')">Restore</button></div>`).join('')}`:'<p class="hp">Google Drive backup is not included in your plan.</p>'}<small>Cloud sync: ${FB&&FB.ok?'on':'off'}</small></div>${stUse()}`]],'v')};
+function logo(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{let u='';for(const m of[300,240,200]){const k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const g=c.getContext('2d');g.imageSmoothingQuality='high';g.drawImage(im,0,0,c.width,c.height);u=c.toDataURL('image/png');if(u.length<140000)break}D().set.logo=u;save();render()};im.onerror=()=>toast('Not a valid image');im.src=r.result};r.readAsDataURL(f)}
 const unm=e=>{const f=(D().sf||[]).find(z=>z.u==e);return f?f.n:e},freeSf=()=>(D().sf||[]).filter(f=>!f.lf&&!f.u),stfLk=e=>(D().sf||[]).some(z=>z.u==e);
 function linkU(i){const u=DB.users[i],id=v('lk'+i),f=(D().sf||[]).find(z=>z.id==id);if(!u||!f)return toast('Choose a staff member');f.u=u.e;save();render();toast('Linked to '+f.n)}
 function stfLogin(id){(S.sb=S.sb||{}).set='us';S.usf0=String(id);go('set')}
